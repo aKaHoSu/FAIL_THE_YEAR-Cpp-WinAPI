@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\システム">
+      <UniqueIdentifier>{33b0f054-c90a-49e6-928d-5a0f288f2878}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ゲーム管理">
+      <UniqueIdentifier>{552e3fc9-cf6c-43cd-bc84-e068cbfc062b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\オブジェクト">
+      <UniqueIdentifier>{72a7eb82-ac20-459c-83ed-26bee9791c55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\UI">
+      <UniqueIdentifier>{09bf5e86-cb0f-4807-82ac-c5cf7449a841}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ユーティリティ">
+      <UniqueIdentifier>{51dab256-d849-4676-be49-b5873c2405ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\システム">
+      <UniqueIdentifier>{1fb61cb8-2d9a-4bbe-bc8f-9cc2e9f39889}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ゲーム管理">
+      <UniqueIdentifier>{e93649bb-5e50-4480-a10d-46376a785a89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\シーン状態">
+      <UniqueIdentifier>{08f66917-c907-4b23-a519-6a2156ab71e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\オブジェクト">
+      <UniqueIdentifier>{787be38f-f9d2-4664-8b39-bd2530e02d24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\UI">
+      <UniqueIdentifier>{5bf04289-c327-4776-977b-d4f3eac1fbf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ユーティリティ">
+      <UniqueIdentifier>{367e05e7-28a5-4b12-87aa-08d31421c999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="docs">
+      <UniqueIdentifier>{61bf5267-8341-4299-9d6c-3ef01c0db7c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="リソース ファイル\image">
+      <UniqueIdentifier>{ab86373d-dc35-4db5-8296-a4dedddd1347}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>ソース ファイル\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="WndProc.cpp">
+      <Filter>ソース ファイル\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineContext.cpp">
+      <Filter>ソース ファイル\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyManager.cpp">
+      <Filter>ソース ファイル\システム</Filter>
+    </ClCompile>
+    <ClCompile Include="Common.cpp">
+      <Filter>ソース ファイル\ゲーム管理</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>ソース ファイル\ゲーム管理</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInitializer.cpp">
+      <Filter>ソース ファイル\ゲーム管理</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>ソース ファイル\ゲーム管理</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectData.cpp">
+      <Filter>ソース ファイル\オブジェクト</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>ソース ファイル\オブジェクト</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ソース ファイル\オブジェクト</Filter>
+    </ClCompile>
+    <ClCompile Include="Ryunen.cpp">
+      <Filter>ソース ファイル\オブジェクト</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Image.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Shape.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Text.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleWindow.cpp">
+      <Filter>ソース ファイル\ユーティリティ</Filter>
+    </ClCompile>
+    <ClCompile Include="Draw.cpp">
+      <Filter>ソース ファイル\ユーティリティ</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EngineContext.h">
+      <Filter>ヘッダー ファイル\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyManager.h">
+      <Filter>ヘッダー ファイル\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>ヘッダー ファイル\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="WndProc.h">
+      <Filter>ヘッダー ファイル\システム</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>ヘッダー ファイル\ゲーム管理</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>ヘッダー ファイル\ゲーム管理</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneServices.h">
+      <Filter>ヘッダー ファイル\ゲーム管理</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>ヘッダー ファイル\ゲーム管理</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInitializer.h">
+      <Filter>ヘッダー ファイル\ゲーム管理</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleSceneState.h">
+      <Filter>ヘッダー ファイル\シーン状態</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuLikeSelectionState.h">
+      <Filter>ヘッダー ファイル\シーン状態</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgressionSceneState.h">
+      <Filter>ヘッダー ファイル\シーン状態</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayingSceneState.h">
+      <Filter>ヘッダー ファイル\シーン状態</Filter>
+    </ClInclude>
+    <ClInclude Include="TutorialSceneState.h">
+      <Filter>ヘッダー ファイル\シーン状態</Filter>
+    </ClInclude>
+    <ClInclude Include="ExitSceneState.h">
+      <Filter>ヘッダー ファイル\シーン状態</Filter>
+    </ClInclude>
+    <ClInclude Include="Hitbox.h">
+      <Filter>ヘッダー ファイル\オブジェクト</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectData.h">
+      <Filter>ヘッダー ファイル\オブジェクト</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>ヘッダー ファイル\オブジェクト</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>ヘッダー ファイル\オブジェクト</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>ヘッダー ファイル\オブジェクト</Filter>
+    </ClInclude>
+    <ClInclude Include="Ryunen.h">
+      <Filter>ヘッダー ファイル\オブジェクト</Filter>
+    </ClInclude>
+    <ClInclude Include="Size.h">
+      <Filter>ヘッダー ファイル\オブジェクト</Filter>
+    </ClInclude>
+    <ClInclude Include="Speed.h">
+      <Filter>ヘッダー ファイル\オブジェクト</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Image.h">
+      <Filter>ヘッダー ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Shape.h">
+      <Filter>ヘッダー ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Text.h">
+      <Filter>ヘッダー ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleWindow.h">
+      <Filter>ヘッダー ファイル\ユーティリティ</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugLog.h">
+      <Filter>ヘッダー ファイル\ユーティリティ</Filter>
+    </ClInclude>
+    <ClInclude Include="Draw.h">
+      <Filter>ヘッダー ファイル\ユーティリティ</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>ヘッダー ファイル\ユーティリティ</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugCommandLine.h">
+      <Filter>ヘッダー ファイル\ユーティリティ</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>リソース ファイル</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Image\CanAdv.bmp">
+      <Filter>リソース ファイル\image</Filter>
+    </Image>
+    <Image Include="Image\Logo.bmp">
+      <Filter>リソース ファイル\image</Filter>
+    </Image>
+    <Image Include="Image\Player.bmp">
+      <Filter>リソース ファイル\image</Filter>
+    </Image>
+    <Image Include="Image\Ready.bmp">
+      <Filter>リソース ファイル\image</Filter>
+    </Image>
+    <Image Include="Image\Start.bmp">
+      <Filter>リソース ファイル\image</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="docs\game_flowchart.md">
+      <Filter>docs</Filter>
+    </None>
+    <None Include="docs\game_flow.md">
+      <Filter>docs</Filter>
+    </None>
+    <None Include="docs\game_mechanics.md">
+      <Filter>docs</Filter>
+    </None>
+  </ItemGroup>
+</Project>

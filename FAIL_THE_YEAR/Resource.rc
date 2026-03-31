@@ -1,0 +1,182 @@
+// Microsoft Visual C++ generated resource script.
+//
+#pragma code_page(65001)
+
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 (日本) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_LOGO                BITMAP                  "Image\\Logo.bmp"
+
+IDB_PLAYER              BITMAP                  "Image\\Player.bmp"
+
+IDB_READY               BITMAP                  "Image\\Ready.bmp"
+
+IDB_START               BITMAP                  "Image\\Start.bmp"
+
+IDB_CANADV              BITMAP                  "Image\\CanAdv.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_TITLE               "Enterキーで続ける / Escキーでゲームを終了"
+    IDS_MENU_PLAY           "ゲームを遊ぶ"
+    IDS_MENU_TUTORIAL       "チュートリアル"
+    IDS_MENU_BACK           "⇦  Escキーでタイトルに戻る"
+    IDS_SELDIFF             "難易度を選択"
+    IDS_SELDIFF_BACK        "⇦  Escキーでメニューに戻る"
+    IDS_SELDIFF_NORMAL      "か ん た ん め"
+    IDS_SELDIFF_HARD        "む ず か し め"
+    IDS_RESULT_CLEAR        "ゲームクリア"
+    IDS_RESULT_FAIL         "留年確定"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_RYUNEN              "留年"
+    IDS_SHINKYU             "進級"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_RESULT_EVADE_RYUNEN "回避した留年の数：%d"
+    IDS_RESULT_EVADE_SHINKYU "追い込んだ数　　：%d"
+    IDS_RESULT_NEXT         "- Enterで続ける -"
+    IDS_AFTER_RESULT_RETRY  "は じ め か ら"
+    IDS_AFTER_RESULT_TITLE  "タイトルに戻る"
+    IDS_BEST_EVADE_CNT      "ベスト回避記録：%d"
+    IDS_T_M_EXPL2           "Shiftキーを押している間は"
+    IDS_T_M_EXPL3           "低速で移動するよ"
+    IDS_ESC_NM              "おかえりなさい。"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_T_TITLE             "チュートリアル"
+    IDS_T_CONSEPT1          "留年の危機が迫ってる彼→"
+    IDS_T_CONSEPT2          "留年を回避して、棒人間くんを進級させよう!"
+    IDS_T_MOVE              "移動方法"
+    IDS_T_M_EXPL1           "十字キーで移動できるよ"
+    IDS_T_RYUNEN            "留年について"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_T_R_EXPL1           "これに当たってしまうと"
+    IDS_T_R_EXPL2           "棒人間くんのSUN値が減ってしまいます"
+    IDS_T_R_EXPL3           "灰色になった留年は当たっても大丈夫"
+    IDS_T_LIFE              "SUN値について"
+    IDS_T_L_EXPL1           "SUN値がゼロになると"
+    IDS_T_L_EXPL2           "留年が確定してしまう"
+    IDS_T_L_EXPL3           "SUN値は表示されないので注意!"
+    IDS_T_L_EXPL4           "SUN値が残り一つになると"
+    IDS_T_L_EXPL5           "棒人間くんは震え上がるぞ!"
+    IDS_T_BOMB              "ボムについて"
+    IDS_T_B_EXPL1           "足元に魔法陣が出てるときは"
+    IDS_T_B_EXPL2           "Zキーでボムが発動できるぞ! "
+    IDS_T_B_EXPL3           "ボム発動後はしばらく使えなくなるので注意"
+    IDS_T_CLEAR             "クリア条件について"
+    IDS_T_C_EXPL1           "留年を一定数回避すると、"
+    IDS_T_C_EXPL2           "進級確定カットインが走るよ"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_T_C_EXPL3           "カットインは見てからのお楽しみ..."
+    IDS_T_C_EXPL4           "見せてくれよ、進級確定の景色...>"
+    IDS_T_AFTER_CLEAR       "その後は、進級が降ってきます"
+    IDS_T_AC_EXPL1          "この進級に当たれば、晴れて進級となります"
+    IDS_T_AC_EXPL2          "さっさと進級してもいいし、"
+    IDS_T_AC_EXPL3          "自らを追い込んで成績をもっとよくしてもいい"
+    IDS_T_END               "チュートリアルは以上!"
+    IDS_T_E_EXPL1           "がんばって進級してね"
+    IDS_T_E_EXPL2           "おねがいね>"
+    IDS_T_BACK              "⇦  Escキーで戻る"
+    IDS_T_NEXT              "Enterキーで次へ ⇨"
+    IDS_T_BACK_TITLE        "Enterキーでタイトルへ ⇨"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SELDIFF_NIGHTMARE   "N"
+    IDS_AFTER_RESULT_NIGHTMARE "逃避など許されない逃避など許されない逃避など許されない"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_E_NEW_GUEST         "次は遊んでね"
+    IDS_E_THANKS            "遊んでくれてありがとう"
+    IDS_E_NM_ESC            "災難だったね"
+    IDS_E_NM_CLEAR          "...君、本当に人間？"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PAUSE               "～ PAUSE ～"
+END
+
+#endif    // 日本語 (日本) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

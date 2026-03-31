@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="FAIL_THE_YEAR/FAIL_THE_YEAR.vcxproj" Id="7920feb9-d649-4eba-b2ef-c42aa78bbae5" />
+</Solution>
