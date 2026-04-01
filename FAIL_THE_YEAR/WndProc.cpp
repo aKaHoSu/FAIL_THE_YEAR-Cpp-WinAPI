@@ -132,6 +132,7 @@ LRESULT CALLBACK WndProc(HWND hWnd,
 		break;
 
 	case WM_KEYDOWN:
+#ifdef _DEBUG
 		if (engine.debugCmdLine.isVisible) {
 			// コマンドライン表示中は入力をゲーム側へ流さず、ここで完結させる
 			if (wParam == VK_BACK) {
@@ -162,9 +163,11 @@ LRESULT CALLBACK WndProc(HWND hWnd,
 
 			return 0;
 		}
+#endif
 		break;
 
 	case WM_CHAR:
+#ifdef _DEBUG
 		if (!engine.debugCmdLine.isVisible) {
 			if (wParam == L'/') {
 				// '/' でコマンドラインを開く
@@ -184,6 +187,7 @@ LRESULT CALLBACK WndProc(HWND hWnd,
 			}
 		}
 		return 0;
+#endif
 
 	case WM_TIMER:
 		if (engine.tmf == 0) {
