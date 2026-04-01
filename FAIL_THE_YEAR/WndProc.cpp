@@ -19,7 +19,7 @@
 namespace {
 	// ゲームループタイマー間隔
 	// これを短くすると、ゲームの更新頻度が上がる（=処理が重くなる）
-	constexpr int kTimerIntervalMs = 10;
+	constexpr int kTimerIntervalMs = 15;
 
 	// 実行結果メッセージを画面表示するフレーム数
 	constexpr int kCommandStatusFrames = 280;
