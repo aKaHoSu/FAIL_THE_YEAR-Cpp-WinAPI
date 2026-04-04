@@ -79,10 +79,10 @@ GDI の `CreateCompatibleDC` を用いたバックバッファへの描画を実
     │   ├── game_mechanics.md        # ゲームルール・オブジェクト仕様
     │   ├── game_flow.md             # シーンごとの詳細な挙動・遷移条件
     │   └── game_flowchart.md        # シーン遷移フローチャート（Mermaid）
-	│
-	├── Resource.rc                  # リソーススクリプト（画像・文字列の埋め込み）
-    ├── resource.h                   # リソース ID 定義
-	│
+    │  
+    ├── Resource.rc                  # リソーススクリプト（画像・文字列の埋め込み）
+    ├── resource.h                   # リソース ID 定義    
+    │
     ├── WinMain.cpp                  # エントリポイント・メインループ
     ├── WndProc.h / .cpp             # ウィンドウプロシージャ
     ├── EngineContext.h / .cpp       # プロジェクト全体のコンテキスト管理
