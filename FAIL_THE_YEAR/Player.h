@@ -14,7 +14,7 @@ class GameState;
 
 enum class PlayerStatus : int16_t {
 	None = -1,   // 無効
-	Easy,        // 通常
+	Normal,      // 通常
 	Damage,      // ダメージを受けた状態
 };
 

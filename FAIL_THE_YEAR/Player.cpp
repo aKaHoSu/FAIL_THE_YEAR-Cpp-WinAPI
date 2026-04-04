@@ -70,15 +70,15 @@ void Player::Action(const KeyManager& key, const SceneManager& sceneManager, Obj
 		// PLAYER_STATUS_NONEのときは、Readyシーンに入るまでAction内の処理を行わない
 	case PlayerStatus::None:
 		if (sceneManager.getCurrentSceneType() >= SceneId::Ready) {
-			setStatusType(PlayerStatus::Easy);
+			setStatusType(PlayerStatus::Normal);
 		}
 		return;
 
-	case PlayerStatus::Easy:
-		if (getOldStatusType() != PlayerStatus::Easy) {
+	case PlayerStatus::Normal:
+		if (getOldStatusType() != PlayerStatus::Normal) {
 			setDamageCT(DMG_CT);
 			DEBUG_LOG("Current player status : PLAYER_STATUS_NORMAL\n");
-			setOldStatusType(PlayerStatus::Easy);
+			setOldStatusType(PlayerStatus::Normal);
 		}
 		break;
 
@@ -100,7 +100,7 @@ void Player::Action(const KeyManager& key, const SceneManager& sceneManager, Obj
 
 		// ダメージクールタイムが0になったら通常状態に戻す
 		else {
-			setStatusType(PlayerStatus::Easy);
+			setStatusType(PlayerStatus::Normal);
 			setVisible(true);
 		}
 		break;

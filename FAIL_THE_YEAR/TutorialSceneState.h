@@ -42,7 +42,7 @@ public:
 		// ステップが変化した直後の初期化処理
 		if (manager.getOldTutorialStepType() != manager.getCurrentTutorialStepType()) {
 			services.gameState.SetCanAdv(false);
-			services.objMgr.GetPlayer().setStatusType(PlayerStatus::Easy);
+			services.objMgr.GetPlayer().setStatusType(PlayerStatus::Normal);
 			services.objMgr.GetPlayer().setLife(3);
 			for (int i = 0; i < MAX_RYUNEN; i++) {
 				services.objMgr.GetRyunen(i).setActCnt(0);
