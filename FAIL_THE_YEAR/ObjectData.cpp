@@ -65,7 +65,7 @@ void ObjectData::setPosition(float xposition, float yposition) {
 }
 
 // 現在座標に差分を加算して移動する
-void ObjectData::addPosition(int16_t xAdd, int16_t yAdd) {
+void ObjectData::addPosition(float xAdd, float yAdd) {
 	this->position.x += xAdd;
 	this->position.y += yAdd;
 }

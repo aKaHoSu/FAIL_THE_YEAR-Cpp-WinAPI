@@ -27,7 +27,7 @@ public:
 	void setStatus(int16_t status);
 	void setSize(int16_t width, int16_t height);
 	void setPosition(float xposition, float yposition);
-	void addPosition(int16_t xAdd, int16_t yAdd);
+	void addPosition(float xAdd, float yAdd);
 	void setSpeed(int16_t xspeed, int16_t yspeed);
 	void setActCnt(int16_t actcnt);
 

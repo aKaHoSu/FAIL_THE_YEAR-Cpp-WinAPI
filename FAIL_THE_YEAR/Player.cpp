@@ -123,19 +123,19 @@ void Player::Action(const KeyManager& key, const SceneManager& sceneManager, Obj
 	// 十字キーで移動、画面外に行けないようにする
 	if (key.IsPress(KeyManager::Up)) {
 		if (getPosition().y >= 0)
-			addPosition(0, -speed.y);
+			addPosition(0, static_cast<float>(-speed.y));
 	}
 	if (key.IsPress(KeyManager::Down)) {
 		if (getPosition().y <= FIX)
-			addPosition(0, speed.y);
+			addPosition(0, static_cast<float>(speed.y));
 	}
 	if (key.IsPress(KeyManager::Left)) {
 		if (getPosition().x >= 0)
-			addPosition(-speed.x, 0);
+			addPosition(static_cast<float>(-speed.x), 0);
 	}
 	if (key.IsPress(KeyManager::Right)) {
 		if (getPosition().x <= RIGHT_FIX)
-			addPosition(speed.x, 0);
+			addPosition(static_cast<float>(speed.x), 0);
 	}
 	/*--------------------------------------------------------------*/
 
