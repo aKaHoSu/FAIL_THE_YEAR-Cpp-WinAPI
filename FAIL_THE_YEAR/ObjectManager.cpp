@@ -9,10 +9,10 @@ namespace {
 	// プレイヤーと留年の衝突判定を行う際に使用する関数。
 	bool isCollision(const ObjectData& lhs, const ObjectData& rhs) {
 		const OBJHITBOX::Rect lhsRect = lhs.getCollision().GetRect(
-			lhs.getPosition().x + 8, 
-			lhs.getPosition().y + 8);
+			lhs.getPosition().x, 
+			lhs.getPosition().y);
 		const OBJHITBOX::Rect rhsRect = rhs.getCollision().GetRect(
-			rhs.getPosition().x - (float)rhs.getSize().width - 7.0f,
+			rhs.getPosition().x, 
 			rhs.getPosition().y);
 
 		const bool xOverlap = (lhsRect.x1 < rhsRect.x2) && (lhsRect.x2 > rhsRect.x1);

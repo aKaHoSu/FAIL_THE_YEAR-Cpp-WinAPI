@@ -310,15 +310,8 @@ void Draw::DrawHitBox(HDC hDC, const ObjectData& obj, const GameState& gameState
 	// ヒットボックスの矩形を取得する変数
 	OBJHITBOX::Rect r;
 
-	// getCollision() アクセサ経由でヒットボックスを取得する
-	if (obj.getId() == ID_PLAYER) {
-		r = obj.getCollision().GetRect(obj.getPosition().x + 8, obj.getPosition().y + 8);
-	}
-	// 留年オブジェクトのみ、描画位置から左にずらして描画する（テキストの表示方法の影響）
-	else {
-		r = obj.getCollision().GetRect(obj.getPosition().x - (float)obj.getSize().width - 7.0f,
-			obj.getPosition().y);
-	}
+	// 各オブジェクトが持つ offsetX/offsetY を適用して矩形を取得する
+	r = obj.getCollision().GetRect(obj.getPosition().x, obj.getPosition().y);
 
 	// 赤い点線のペンを作成して選択
 	HPEN hPen = CreatePen(PS_DOT, 1, RGB(255, 0, 0));

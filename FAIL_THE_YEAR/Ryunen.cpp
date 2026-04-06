@@ -35,7 +35,7 @@ Ryunen::Ryunen()
 	, drawColor(RGB(30, 30, 30))
 {
 	id = ID_RYUNEN;
-	collision = { RYUNEN_WIDTH, RYUNEN_HEIGHT };
+	collision = { RYUNEN_WIDTH, RYUNEN_HEIGHT, -(float)RYUNEN_WIDTH - 7.0f, 0.0f };
 }
 
 Ryunen::~Ryunen() {}

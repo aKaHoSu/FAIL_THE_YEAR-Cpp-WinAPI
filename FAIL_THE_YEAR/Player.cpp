@@ -40,7 +40,7 @@ Player::Player()
 {
 	id = ID_PLAYER;
 	status = static_cast<int16_t>(PlayerStatus::None);
-	collision = { 40, 46 };
+	collision = { 40, 46, 8.0f, 8.0f };
 }
 
 Player::~Player() {}

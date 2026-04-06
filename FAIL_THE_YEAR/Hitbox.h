@@ -21,10 +21,10 @@ struct OBJHITBOX {
 	// キャラクターの位置を基準に当たり判定の矩形を取得する
 	Rect GetRect(float charX, float charY) const {
 		return {
-			charX,
-			charY,
-			charX + width,
-			charY + height
+			charX + offsetX,
+			charY + offsetY,
+			charX + offsetX + width,
+			charY + offsetY + height
 		};
 	}
 };
