@@ -102,6 +102,7 @@ public:
 					manager.setCurrentSceneType(SceneId::Ready);
 					GameInitializer::ResetAllGameObjects(hInst, hWnd, services.gameState, services.objMgr);
 				}
+				m_menuSelection = 0;
 			}
 			break;
 
@@ -125,6 +126,7 @@ public:
 				else if (manager.getCurrentSceneType() == SceneId::AfterResult) {
 					manager.setCurrentSceneType(SceneId::Title);
 				}
+				m_menuSelection = 0;
 			}
 			break;
 
@@ -145,6 +147,7 @@ public:
 				manager.setCurrentSceneType(SceneId::Ready);
 				GameInitializer::InitAllGameObjects(hInst, hWnd, services.gameState, services.objMgr);
 				GameInitializer::ResetAllGameObjects(hInst, hWnd, services.gameState, services.objMgr);
+				m_menuSelection = 0;
 			}
 			break;
 
@@ -160,6 +163,7 @@ public:
 				services.gameState.HasEverClearedNightmare()) {
 
 				manager.setCurrentSceneType(GetPreviousScene(manager.getCurrentSceneType()));
+				m_menuSelection = 0;
 			}
 		}
 
