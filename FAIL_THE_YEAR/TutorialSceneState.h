@@ -155,7 +155,9 @@ public:
 
 			if (m_oneHit) {
 				services.objMgr.GetPlayer().Action(key, manager, services.objMgr, services.gameState);
-				services.objMgr.GetPlayer().setLife(1);
+
+				if (services.objMgr.GetPlayer().getLife() > 1)
+					services.objMgr.GetPlayer().setLife(1);
 			}
 
 			if (!m_oneHit ||
