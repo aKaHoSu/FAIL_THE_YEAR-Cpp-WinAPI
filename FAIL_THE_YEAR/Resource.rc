@@ -106,7 +106,7 @@ BEGIN
     IDS_T_CONSEPT1          "留年の危機が迫ってる彼→"
     IDS_T_CONSEPT2          "留年を回避して、棒人間くんを進級させよう!"
     IDS_T_MOVE              "移動方法"
-    IDS_T_M_EXPL1           "十字キーで移動できるよ"
+    IDS_T_M_EXPL1           "十字キー / WASD で移動できるよ"
     IDS_T_RYUNEN            "留年について"
 END
 

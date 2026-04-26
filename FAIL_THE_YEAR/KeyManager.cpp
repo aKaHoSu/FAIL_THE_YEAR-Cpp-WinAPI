@@ -37,16 +37,25 @@ bool KeyManager::IsRelease(KeyCode code) const
 void KeyManager::Update()
 {
 	keyBack_ = key_;  // 前フレームの入力状態を保存
-	key_  = 0;        // 現フレームの入力ビットをリセット
+	key_ = 0;        // 現フレームの入力ビットをリセット
 
 	key_ |= GetBits(VK_UP, Up);
+	key_ |= GetBits('W', Up);
+
 	key_ |= GetBits(VK_DOWN, Down);
+	key_ |= GetBits('S', Down);
+
 	key_ |= GetBits(VK_LEFT, Left);
+	key_ |= GetBits('A', Left);
+
 	key_ |= GetBits(VK_RIGHT, Right);
+	key_ |= GetBits('D', Right);
+
 	key_ |= GetBits(VK_SHIFT, Shift);
 	key_ |= GetBits(VK_RETURN, Enter);
 	key_ |= GetBits(VK_BACK, Backspace);
 	key_ |= GetBits(VK_ESCAPE, Esc);
+
 	key_ |= GetBits('Z', Z);
 	key_ |= GetBits('H', H);
 	key_ |= GetBits('G', G);
