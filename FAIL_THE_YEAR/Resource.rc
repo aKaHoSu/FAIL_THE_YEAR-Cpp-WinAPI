@@ -97,7 +97,7 @@ BEGIN
     IDS_BEST_EVADE_CNT      "ベスト回避記録：%d"
     IDS_T_M_EXPL2           "Shiftキーを押している間は"
     IDS_T_M_EXPL3           "低速で移動するよ"
-    IDS_ESC_NM              "おかえりなさい。"
+    IDS_ESC_NM              " "
 END
 
 STRINGTABLE
@@ -149,7 +149,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_SELDIFF_NIGHTMARE   "N"
-    IDS_AFTER_RESULT_NIGHTMARE "逃避など許されない逃避など許されない逃避など許されない"
+    IDS_AFTER_RESULT_NIGHTMARE "騾?∩縺ｯ險ｱ縺輔ｌ縺ｪ縺?"
 END
 
 STRINGTABLE

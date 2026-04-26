@@ -50,12 +50,12 @@ public:
 		}
 
 		// Back と Next は常に表示（EndTutorial 時は BackTitle に切り替え）
-		services.objMgr.GetUIText(ID_TEXT_T_BACK).setVisible(true);
+		UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, { ID_TEXT_T_BACK });
 		if (manager.getCurrentTutorialStepType() != TutorialStepId::EndTutorial) {
-			services.objMgr.GetUIText(ID_TEXT_T_NEXT).setVisible(true);
+			UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, { ID_TEXT_T_NEXT });
 		}
 		else {
-			services.objMgr.GetUIText(ID_TEXT_T_BACK_TITLE).setVisible(true);
+			UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, { ID_TEXT_T_BACK_TITLE });
 		}
 
 		// チュートリアルの段階に応じた表示設定と演出
@@ -75,11 +75,12 @@ public:
 				services.objMgr.GetPlayer().setPosition(900, 310);
 				services.objMgr.GetPlayer().setBomb(false);
 			}
-			services.objMgr.GetUIText(ID_TEXT_T_TITLE).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_CONSEPT1).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_CONSEPT2).setVisible(true);
-			services.objMgr.GetUIShape(ID_SHAPE_T_TITLE).setVisible(true);
-			services.objMgr.GetPlayer().setVisible(true);
+			UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, {
+				ID_TEXT_T_TITLE,
+				ID_TEXT_T_CONSEPT1,
+				ID_TEXT_T_CONSEPT2 });
+			UiVisibilityBatchHelper::SetShapesVisible(services.objMgr, { ID_SHAPE_T_TITLE });
+			UiVisibilityBatchHelper::SetPlayerVisible(services.objMgr);
 			services.objMgr.GetPlayer().Action(key, manager, services.objMgr, services.gameState);
 			break;
 
@@ -89,12 +90,13 @@ public:
 				manager.setOldTutorialStepType(TutorialStepId::Move);
 				services.objMgr.GetRyunen(0).setVisible(false);
 			}
-			services.objMgr.GetPlayer().setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_MOVE).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_M_EXPL1).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_M_EXPL2).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_M_EXPL3).setVisible(true);
-			services.objMgr.GetUIShape(ID_SHAPE_T_MOVE).setVisible(true);
+			UiVisibilityBatchHelper::SetPlayerVisible(services.objMgr);
+			UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, {
+				ID_TEXT_T_MOVE,
+				ID_TEXT_T_M_EXPL1,
+				ID_TEXT_T_M_EXPL2,
+				ID_TEXT_T_M_EXPL3 });
+			UiVisibilityBatchHelper::SetShapesVisible(services.objMgr, { ID_SHAPE_T_MOVE });
 			services.objMgr.GetPlayer().Action(key, manager, services.objMgr, services.gameState);
 			break;
 
@@ -105,13 +107,14 @@ public:
 				services.objMgr.GetPlayer().setPosition(900, 310);
 				m_oneHit = false;
 			}
-			services.objMgr.GetPlayer().setVisible(true);
-			services.objMgr.GetRyunen(0).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_RYUNEN).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_R_EXPL1).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_R_EXPL2).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_R_EXPL3).setVisible(true);
-			services.objMgr.GetUIShape(ID_SHAPE_T_RYUNEN_BOMB).setVisible(true);
+			UiVisibilityBatchHelper::SetPlayerVisible(services.objMgr);
+			UiVisibilityBatchHelper::SetRyunenVisible(services.objMgr, 0);
+			UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, {
+				ID_TEXT_T_RYUNEN,
+				ID_TEXT_T_R_EXPL1,
+				ID_TEXT_T_R_EXPL2,
+				ID_TEXT_T_R_EXPL3 });
+			UiVisibilityBatchHelper::SetShapesVisible(services.objMgr, { ID_SHAPE_T_RYUNEN_BOMB });
 			if (!services.objMgr.GetRyunen(0).getPositionFlg()) {
 				services.objMgr.GetRyunen(0).SpawnAt(952.0f);
 			}
@@ -130,18 +133,19 @@ public:
 				for (int i = 1; i <= 6; i++) services.objMgr.GetRyunen(i).setVisible(false);
 			}
 
-			services.objMgr.GetPlayer().setVisible(true);
+			UiVisibilityBatchHelper::SetPlayerVisible(services.objMgr);
 
 			if ((!m_oneHit) || (m_oneHit && services.objMgr.GetRyunen(0).getStatusType() != RyunenStatus::Offscreen))
-				services.objMgr.GetRyunen(0).setVisible(true);
+				UiVisibilityBatchHelper::SetRyunenVisible(services.objMgr, 0);
 
-			services.objMgr.GetUIText(ID_TEXT_T_LIFE).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_L_EXPL1).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_L_EXPL2).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_L_EXPL3).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_L_EXPL4).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_L_EXPL5).setVisible(true);
-			services.objMgr.GetUIShape(ID_SHAPE_T_LIFE).setVisible(true);
+			UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, {
+				   ID_TEXT_T_LIFE,
+				   ID_TEXT_T_L_EXPL1,
+				   ID_TEXT_T_L_EXPL2,
+				   ID_TEXT_T_L_EXPL3,
+				   ID_TEXT_T_L_EXPL4,
+				   ID_TEXT_T_L_EXPL5 });
+			UiVisibilityBatchHelper::SetShapesVisible(services.objMgr, { ID_SHAPE_T_LIFE });
 
 			if (!services.objMgr.GetRyunen(0).getPositionFlg()) {
 				services.objMgr.GetRyunen(0).SpawnAt(952.0f);
@@ -170,14 +174,15 @@ public:
 				for (int i = 1; i < 6; i++) services.objMgr.GetRyunen(i).setInitData(hInst, i);
 			}
 
-			services.objMgr.GetPlayer().setVisible(true);
+			UiVisibilityBatchHelper::SetPlayerVisible(services.objMgr);
 
-			for (int i = 1; i < 6; i++) services.objMgr.GetRyunen(i).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_BOMB).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_B_EXPL1).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_B_EXPL2).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_B_EXPL3).setVisible(true);
-			services.objMgr.GetUIShape(ID_SHAPE_T_RYUNEN_BOMB).setVisible(true);
+			UiVisibilityBatchHelper::SetRyunenRangeVisible(services.objMgr, 1, 5, true);
+			UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, {
+				ID_TEXT_T_BOMB,
+				ID_TEXT_T_B_EXPL1,
+				ID_TEXT_T_B_EXPL2,
+				ID_TEXT_T_B_EXPL3 });
+			UiVisibilityBatchHelper::SetShapesVisible(services.objMgr, { ID_SHAPE_T_RYUNEN_BOMB });
 			services.objMgr.GetPlayer().Action(key, manager, services.objMgr, services.gameState);
 
 			for (int i = 1; i < 6; i++) {
@@ -216,13 +221,14 @@ public:
 				for (int i = 1; i <= 6; i++) services.objMgr.GetRyunen(i).setVisible(false);
 			}
 
-			services.objMgr.GetPlayer().setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_CLEAR).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_C_EXPL1).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_C_EXPL2).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_C_EXPL3).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_C_EXPL4).setVisible(true);
-			services.objMgr.GetUIShape(ID_SHAPE_T_CLEAR).setVisible(true);
+			UiVisibilityBatchHelper::SetPlayerVisible(services.objMgr);
+			UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, {
+				ID_TEXT_T_CLEAR,
+				ID_TEXT_T_C_EXPL1,
+				ID_TEXT_T_C_EXPL2,
+				ID_TEXT_T_C_EXPL3,
+				ID_TEXT_T_C_EXPL4 });
+			UiVisibilityBatchHelper::SetShapesVisible(services.objMgr, { ID_SHAPE_T_CLEAR });
 			break;
 
 		case TutorialStepId::AfterCanAdv:
@@ -233,12 +239,13 @@ public:
 				services.objMgr.GetRyunen(6).setPosition(1100, 0);
 			}
 
-			services.objMgr.GetRyunen(6).setVisible(true);
+			UiVisibilityBatchHelper::SetRyunenVisible(services.objMgr, 6);
 			services.gameState.SetCanAdv(true);
-			services.objMgr.GetUIText(ID_TEXT_T_AFTER_CLEAR).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_AC_EXPL1).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_AC_EXPL2).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_AC_EXPL3).setVisible(true);
+			UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, {
+				  ID_TEXT_T_AFTER_CLEAR,
+				  ID_TEXT_T_AC_EXPL1,
+				  ID_TEXT_T_AC_EXPL2,
+				  ID_TEXT_T_AC_EXPL3 });
 			services.objMgr.GetRyunen(6).Action(manager, services.gameState);
 
 			if (!services.objMgr.GetRyunen(6).getPositionFlg()) {
@@ -254,11 +261,12 @@ public:
 				services.objMgr.GetRyunen(6).setVisible(false);
 			}
 
-			services.objMgr.GetPlayer().setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_END).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_E_EXPL1).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_T_E_EXPL2).setVisible(true);
-			services.objMgr.GetUIShape(ID_SHAPE_T_END).setVisible(true);
+			UiVisibilityBatchHelper::SetPlayerVisible(services.objMgr);
+			UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, {
+				ID_TEXT_T_END,
+				ID_TEXT_T_E_EXPL1,
+				ID_TEXT_T_E_EXPL2 });
+			UiVisibilityBatchHelper::SetShapesVisible(services.objMgr, { ID_SHAPE_T_END });
 			break;
 		}
 	}

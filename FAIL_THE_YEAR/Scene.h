@@ -97,11 +97,6 @@ protected:
 
 	GameResult result;
 	bool m_isPaused = false;              // ポーズ状態（Playing中のEscで切り替え）
-
-	// 選択UIの基準座標。
-	// 矢印はX固定でYのみ動かし、枠も同じYに追従させる。
-	static constexpr int16_t cursorX = 310;
-	static constexpr int16_t frameX = 350;
 };
 
 

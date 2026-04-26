@@ -197,7 +197,7 @@ void Player::useBomb(ObjectManager& objMgr) {
 	}
 }
 
-// チュートリアルのコンセプト紹介時、プレイヤーを震わせる処理（要確認）
+// チュートリアルのコンセプト紹介時、プレイヤーを震わせる処理
 void Player::updateDrawState(const SceneManager& sceneManager, const GameState& gameState) {
 	const int16_t intensity = (gameState.CurrentDifficulty() == Difficulty::Nightmare)
 		? kShakeIntensityNightmare

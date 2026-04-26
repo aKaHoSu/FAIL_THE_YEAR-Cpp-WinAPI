@@ -7,10 +7,14 @@
 #include "GameInitializer.h"
 #include "DebugLog.h"
 #include "TitleSceneState.h"
-#include "MenuLikeSelectionState.h"
-#include "ProgressionSceneState.h"
+#include "MenuSceneState.h"
+#include "SelectDifficultySceneState.h"
+#include "ReadySceneState.h"
 #include "PlayingSceneState.h"
+#include "ResultSceneState.h"
+#include "AfterResultSceneState.h"
 #include "TutorialSceneState.h"
+#include "EscNightmareSceneState.h"
 #include "ExitSceneState.h"
 #include "SceneServices.h"
 #include "EngineContext.h"
@@ -57,13 +61,23 @@ void SceneManager::Update(
 	switch (sceneNow) {
 
 	case SceneId::Title:
+       // Title シーン専用入力
 		TitleSceneState::HandleInput(*this, key);
 		break;
 
 	case SceneId::Menu:
+     // Menu シーン専用入力
+		MenuSceneState::HandleInput(*this, key, services);
+		break;
+
 	case SceneId::SelectDifficulty:
+       // SelectDifficulty シーン専用入力
+		SelectDifficultySceneState::HandleInput(*this, key, hInst, hWnd, services);
+		break;
+
 	case SceneId::AfterResult:
-		MenuLikeSelectionState::HandleInput(*this, static_cast<int16_t>(sceneNow), key, hInst, hWnd, services);
+      // AfterResult シーン専用入力
+		AfterResultSceneState::HandleInput(*this, key, hInst, hWnd, services);
 		break;
 
 	case SceneId::Ready:
@@ -82,7 +96,8 @@ void SceneManager::Update(
 		break;
 
 	case SceneId::Result:
-		ProgressionSceneState::HandleResultInput(*this, key);
+       // Result シーン専用入力
+		ResultSceneState::HandleInput(*this, key);
 		break;
 
 	case SceneId::Tutorial:
@@ -115,19 +130,23 @@ void SceneManager::SceneLoop(HINSTANCE hInst, HWND hWnd, const KeyManager& key, 
 		break;
 
 	case SceneId::Title:
+        // Title シーン表示設定
 		TitleSceneState::SetupView(*this, services);
 		break;
 
 	case SceneId::Menu:
-		MenuLikeSelectionState::SetupMenuView(*this, services);
+        // Menu シーン表示設定
+		MenuSceneState::SetupView(*this, services);
 		break;
 
 	case SceneId::SelectDifficulty:
-		MenuLikeSelectionState::SetupSelectDifficultyView(*this, services);
+        // SelectDifficulty シーン表示設定
+		SelectDifficultySceneState::SetupView(*this, services);
 		break;
 
 	case SceneId::Ready:
-		ProgressionSceneState::SetupReadyView(*this, services);
+       // Ready シーン表示設定
+		ReadySceneState::SetupView(*this, services);
 		break;
 
 	case SceneId::Playing:
@@ -135,11 +154,13 @@ void SceneManager::SceneLoop(HINSTANCE hInst, HWND hWnd, const KeyManager& key, 
 		break;
 
 	case SceneId::Result:
-		ProgressionSceneState::SetupResultView(*this, services);
+       // Result シーン表示設定
+		ResultSceneState::SetupView(*this, services);
 		break;
 
 	case SceneId::AfterResult:
-		ProgressionSceneState::SetupAfterResultView(*this, services);
+       // AfterResult シーン表示設定
+		AfterResultSceneState::SetupView(*this, services);
 		break;
 
 	case SceneId::Tutorial:
@@ -153,7 +174,8 @@ void SceneManager::SceneLoop(HINSTANCE hInst, HWND hWnd, const KeyManager& key, 
 		break;
 
 	case SceneId::EscNightmare:
-		ProgressionSceneState::SetupEscNightmareView(*this, services);
+       // EscNightmare シーン表示設定
+		EscNightmareSceneState::SetupView(*this, services);
 		break;
 
 	case SceneId::Exit:

@@ -147,21 +147,29 @@
     <ClCompile Include="WndProc.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AfterResultSceneState.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="ConsoleWindow.h" />
     <ClInclude Include="DebugCommandLine.h" />
     <ClInclude Include="DebugLog.h" />
     <ClInclude Include="Draw.h" />
     <ClInclude Include="EngineContext.h" />
+    <ClInclude Include="EscNightmareSceneState.h" />
     <ClInclude Include="ExitSceneState.h" />
     <ClInclude Include="GameInitializer.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="MenuLikeSelectionState.h" />
+    <ClInclude Include="MenuSceneState.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="PlayingOutcomeSystem.h" />
+    <ClInclude Include="PlayingSceneLifecycle.h" />
     <ClInclude Include="PlayingSceneState.h" />
+    <ClInclude Include="PlayingSpawnAndEntitySystem.h" />
     <ClInclude Include="ProgressionSceneState.h" />
+    <ClInclude Include="ReadySceneState.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="ResultSceneState.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Hitbox.h" />
     <ClInclude Include="ObjectData.h" />
@@ -169,10 +177,13 @@
     <ClInclude Include="Position.h" />
     <ClInclude Include="Ryunen.h" />
     <ClInclude Include="SceneServices.h" />
+    <ClInclude Include="SelectDifficultySceneState.h" />
+    <ClInclude Include="SelectionUiHelper.h" />
     <ClInclude Include="Size.h" />
     <ClInclude Include="Speed.h" />
     <ClInclude Include="TitleSceneState.h" />
     <ClInclude Include="TutorialSceneState.h" />
+    <ClInclude Include="UiVisibilityBatchHelper.h" />
     <ClInclude Include="UI_Image.h" />
     <ClInclude Include="UI_Shape.h" />
     <ClInclude Include="UI_Text.h" />

@@ -9,6 +9,7 @@
 #include "KeyManager.h"
 #include "SceneServices.h"
 #include "EngineContext.h"
+#include "UiVisibilityBatchHelper.h"
 #include "DebugLog.h"
 
 class ExitSceneState {
@@ -26,22 +27,22 @@ public:
 
 		// Nightmare をクリアした場合
 		if (services.gameState.HasEverClearedNightmare()) {
-			services.objMgr.GetUIText(ID_TEXT_E_NM_CLEAR).setVisible(true);
+         UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, { ID_TEXT_E_NM_CLEAR });
 		}
 
 		// Nightmare を脱出した場合（クリアはしていない）
 		else if (services.gameState.HasEverEscapedNightmare()){
-			services.objMgr.GetUIText(ID_TEXT_E_NM_ESC).setVisible(true);
+           UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, { ID_TEXT_E_NM_ESC });
 		}
 
 		// ゲームを一回でも遊んだ場合（結果は不問）
 		else if (!services.gameState.IsFirstPlay()) {
-			services.objMgr.GetUIText(ID_TEXT_E_THANKS).setVisible(true);
+           UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, { ID_TEXT_E_THANKS });
 		}
 
 		// 一度も遊んでいない場合（初回起動でいきなり Exit シーンに来た場合など）
 		else {
-			services.objMgr.GetUIText(ID_TEXT_E_NEW_GUEST).setVisible(true);
+            UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, { ID_TEXT_E_NEW_GUEST });
 		}
 
 		// 一定時間経過したらウィンドウを閉じる

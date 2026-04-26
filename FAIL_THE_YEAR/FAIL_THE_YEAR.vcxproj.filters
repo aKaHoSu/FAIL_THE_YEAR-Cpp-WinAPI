@@ -52,6 +52,9 @@
     <Filter Include="リソース ファイル\image">
       <UniqueIdentifier>{ab86373d-dc35-4db5-8296-a4dedddd1347}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\ヘルパー">
+      <UniqueIdentifier>{6fb1ca7d-cd1c-4db7-b015-194e2cc362b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -199,6 +202,39 @@
     </ClInclude>
     <ClInclude Include="DebugCommandLine.h">
       <Filter>ヘッダー ファイル\ユーティリティ</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayingOutcomeSystem.h">
+      <Filter>ヘッダー ファイル\シーン状態</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayingSpawnAndEntitySystem.h">
+      <Filter>ヘッダー ファイル\シーン状態</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayingSceneLifecycle.h">
+      <Filter>ヘッダー ファイル\シーン状態</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultSceneState.h">
+      <Filter>ヘッダー ファイル\シーン状態</Filter>
+    </ClInclude>
+    <ClInclude Include="AfterResultSceneState.h">
+      <Filter>ヘッダー ファイル\シーン状態</Filter>
+    </ClInclude>
+    <ClInclude Include="EscNightmareSceneState.h">
+      <Filter>ヘッダー ファイル\シーン状態</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuSceneState.h">
+      <Filter>ヘッダー ファイル\シーン状態</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadySceneState.h">
+      <Filter>ヘッダー ファイル\シーン状態</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectDifficultySceneState.h">
+      <Filter>ヘッダー ファイル\シーン状態</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectionUiHelper.h">
+      <Filter>ヘッダー ファイル\ヘルパー</Filter>
+    </ClInclude>
+    <ClInclude Include="UiVisibilityBatchHelper.h">
+      <Filter>ヘッダー ファイル\ヘルパー</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

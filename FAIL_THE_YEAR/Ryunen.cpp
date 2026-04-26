@@ -18,11 +18,11 @@
 
 namespace {
 	// Ryunen関連の処理に用いる定数の定義
-	constexpr int16_t kFontSize         = 30;  // 表示フォントサイズ
-	constexpr int16_t kLandActReset     = -20; // 着地時の actCnt リセット値
-	constexpr int16_t kOffscreenMargin  = 20;  // 画面下端の場外判定マージン (px)
-	constexpr int16_t kFixTolerance     = 60;  // 地面接触判定の許容誤差 (px)
-	constexpr double  kBounceFactor     = 0.5; // バウンド時の速度減衰率
+	constexpr int16_t kFontSize = 30;  // 表示フォントサイズ
+	constexpr int16_t kLandActReset = -20; // 着地時の actCnt リセット値
+	constexpr int16_t kOffscreenMargin = 20;  // 画面下端の場外判定マージン (px)
+	constexpr int16_t kFixTolerance = 60;  // 地面接触判定の許容誤差 (px)
+	constexpr double  kBounceFactor = 0.5; // バウンド時の速度減衰率
 }
 
 Ryunen::Ryunen()

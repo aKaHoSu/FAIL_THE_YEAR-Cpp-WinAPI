@@ -8,6 +8,7 @@
 #include "Scene.h"
 #include "KeyManager.h"
 #include "SceneServices.h"
+#include "UiVisibilityBatchHelper.h"
 #include "DebugLog.h"
 
 class TitleSceneState {
@@ -36,7 +37,7 @@ public:
 			services.gameState.SetCurrentDifficulty(Difficulty::Easy);
 		}
 
-		services.objMgr.GetUIImage(ID_IMAGE_LOGO).setVisible(true);
+     UiVisibilityBatchHelper::SetImagesVisible(services.objMgr, { ID_IMAGE_LOGO });
 
 		// ActCnt が BLINK_INTERVAL を超えたら非表示にし、
 		// さらに超えたらリセットして点滅を繰り返す

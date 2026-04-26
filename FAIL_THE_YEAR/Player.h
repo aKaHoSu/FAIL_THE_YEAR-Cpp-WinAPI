@@ -47,9 +47,9 @@ public:
 
 	void useBomb(ObjectManager& objMgr);
 
+	void updateDrawState(const SceneManager& sceneManager, const GameState& gameState) override;
 
 protected:
-	void updateDrawState(const SceneManager& sceneManager, const GameState& gameState) override;
 
 	int16_t life;      // ライフ
 	int16_t damageCT;  // ダメージを受けた際のクールタイム

@@ -117,7 +117,7 @@ namespace {
 
 		// --- Nightmare ---
 		{ ID_TEXT_SELDIFF_NIGHTMARE,      FontType::Large,      IDS_SELDIFF_NIGHTMARE,     1150, 320 },
-		{ ID_TEXT_AFTER_RESULT_NIGHTMARE, FontType::Large,      IDS_AFTER_RESULT_NIGHTMARE, -40, -40 },
+		{ ID_TEXT_AFTER_RESULT_NIGHTMARE, FontType::Large,      IDS_AFTER_RESULT_NIGHTMARE, 380, 270 },
 		{ ID_TEXT_ESC_NM,                 FontType::Lines,      IDS_ESC_NM,                 490, 305 },
 
 		// --- Exit ---
