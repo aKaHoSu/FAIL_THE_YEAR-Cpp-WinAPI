@@ -61,6 +61,7 @@ void KeyManager::Update()
 	key_ |= GetBits('G', G);
 	key_ |= GetBits('F', F);
 	key_ |= GetBits('C', C);
+	key_ |= GetBits('P', P);
 
 }
 

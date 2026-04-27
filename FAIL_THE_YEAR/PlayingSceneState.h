@@ -17,7 +17,7 @@ class PlayingSceneState {
 public:
 	// Zキー入力を受け取り、プレイヤーのボムを発動する
 	static void HandleInput(SceneManager& manager, const KeyManager& key, SceneServices& services) {
-		if (key.IsTriggered(KeyManager::Z)) {
+		if (key.IsTriggered(KeyManager::Z) || key.IsTriggered(KeyManager::P)) {
 			// ボム使用可否の判定は Player::useBomb 側で行う
 			services.objMgr.GetPlayer().useBomb(services.objMgr);
 		}

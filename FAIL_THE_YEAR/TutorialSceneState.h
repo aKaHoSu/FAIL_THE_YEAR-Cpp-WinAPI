@@ -191,7 +191,7 @@ public:
 				services.objMgr.GetRyunen(i).Action(manager, services.gameState);
 			}
 
-			if (key.IsTriggered(KeyManager::Z)) {
+			if (key.IsTriggered(KeyManager::Z) || key.IsTriggered(KeyManager::P)) {
 				services.objMgr.GetPlayer().useBomb(services.objMgr); services.objMgr.GetPlayer().setBombCT(100);
 			}
 

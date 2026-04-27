@@ -25,6 +25,7 @@ public:
 		G		  = (1 << 10),
 		F		  = (1 << 11),
 		C		  = (1 << 12),
+		P		  = (1 << 13)
 	};
 
 	bool IsTriggered(KeyCode code) const;	// 押した時
