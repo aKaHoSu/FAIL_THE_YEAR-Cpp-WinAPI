@@ -25,7 +25,7 @@ struct ImageInitEntry {
 	float   x, y;
 };
 
-static const ImageInitEntry kImageEntries[] = {
+static constexpr ImageInitEntry kImageEntries[] = {
 	{ ID_IMAGE_LOGO, IDB_LOGO, LOGO_WIDTH, LOGO_HEIGHT,
 		(float)(WINDOW_W / 2) - (float)(LOGO_WIDTH / 2), 70 },
 	{ ID_IMAGE_READY, IDB_READY, WINDOW_W, WINDOW_H, 50, 0 },

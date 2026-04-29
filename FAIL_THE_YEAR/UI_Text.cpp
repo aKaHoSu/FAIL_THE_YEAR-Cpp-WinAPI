@@ -54,7 +54,7 @@ namespace {
 		float     x, y;
 	};
 
-	static const TextInitEntry kTextEntries[] = {
+	static constexpr TextInitEntry kTextEntries[] = {
 
 		// --- メインメニュー ---
 		{ ID_TEXT_TITLE,                  FontType::Normal,     IDS_TITLE,                  180, 500 },

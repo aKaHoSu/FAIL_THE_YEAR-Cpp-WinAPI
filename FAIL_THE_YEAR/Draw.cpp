@@ -336,10 +336,10 @@ void Draw::DrawMagicSign(HDC hDC, const Player& obj) {
 	const double angle = obj.getMagicSignAngle();
 
 	// SEGMENTS：紋をいくつの線分に分割するか( = 何角形か決める)
-	const int SEGMENTS = 3;
+	constexpr int SEGMENTS = 3;
 
 	// DOT_STEP：点線の間隔(1の場合は直線になる)
-	const int DOT_STEP = 1;
+	constexpr int DOT_STEP = 1;
 
 	// 赤いペンを使用
 	HPEN hPen = CreatePen(PS_SOLID, 2, RGB(200, 0, 0));
@@ -437,8 +437,8 @@ void Draw::DrawDebugCommandLine(HDC hDC) {
 		return;
 	}
 
-	const int boxHeight = 34;
-	const int boxMargin = 10;
+	constexpr int boxHeight = 34;
+	constexpr int boxMargin = 10;
 	// 左下にコマンド入力欄を表示する矩形
 	RECT boxRect = {
 		boxMargin,
