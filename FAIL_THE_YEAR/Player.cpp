@@ -17,11 +17,11 @@
 
 namespace {
 	// Player関連の処理に用いる定数の定義
-	constexpr int16_t kInitialLife		 = 3;		// 初期ライフ
-	constexpr int16_t kSpeedNormal		 = 8;		// 通常移動速度
-	constexpr int16_t kSpeedSlow         = 4;		// Shift押下時
-	constexpr int16_t kInitialY          = 650;		// 初期Y座標基準値
-	constexpr int16_t kBlinkDivisor      = 5;		// ダメージ点滅周期
+	constexpr int16_t kInitialLife = 3;		// 初期ライフ
+	constexpr int16_t kSpeedNormal = 8;		// 通常移動速度
+	constexpr int16_t kSpeedSlow = 4;		// Shift押下時
+	constexpr int16_t kInitialY = 650;		// 初期Y座標基準値
+	constexpr int16_t kBlinkDivisor = 5;		// ダメージ点滅周期
 	constexpr int16_t kShakeIntensityNightmare = 8; // Nightmareモードの揺れ強度
 	constexpr int16_t kShakeIntensityUsually = 3;		// Nightmareモード以外の揺れ強度
 	constexpr double  kMagicSignAngleStep = 0.04;	// 魔法陣の回転角度ステップ( = 回転速度)
@@ -86,9 +86,9 @@ void Player::Action(const KeyManager& key, const SceneManager& sceneManager, Obj
 		if (getOldStatusType() != PlayerStatus::Damage) {
 			setDamageCT(DMG_CT);
 			if (sceneManager.getCurrentSceneType() != SceneId::Tutorial)
-					setLife(getLife() - 1);
-				DEBUG_LOG("Current player status : PLAYER_STATUS_DAMAGE\n");
-				DEBUG_LOG("Remaining player life : %d\n", getLife());
+				setLife(getLife() - 1);
+			DEBUG_LOG("Current player status : PLAYER_STATUS_DAMAGE\n");
+			DEBUG_LOG("Remaining player life : %d\n", getLife());
 			setOldStatusType(PlayerStatus::Damage);
 		}
 

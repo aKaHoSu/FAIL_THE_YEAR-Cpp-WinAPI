@@ -178,6 +178,7 @@ void UI_Text::refreshDrawState(const GameState& gameState, const ObjectManager& 
 	if (getId() == ID_TEXT_BEST_EVADE_CNT) {
 		swprintf_s(m_renderText, sourceText(), gameState.BestEvadeCnt());
 	}
+
 	else if (getId() == ID_TEXT_RESULT_EVADE_RYUNEN) {
 		if (gameState.CanAdv()) {
 			swprintf_s(m_renderText, sourceText(), gameState.EvadeGoal());
@@ -186,23 +187,27 @@ void UI_Text::refreshDrawState(const GameState& gameState, const ObjectManager& 
 			swprintf_s(m_renderText, sourceText(), gameState.EvadeCnt());
 		}
 	}
+
 	else if (getId() == ID_TEXT_RESULT_EVADE_SHINKYU) {
 		swprintf_s(m_renderText, sourceText(), gameState.EvadeCnt() - gameState.EvadeGoal());
 	}
+
+	else if (getId() == ID_TEXT_LIFE) {
+		swprintf_s(m_renderText, sourceText(), objMgr.getPlayer().getLife());
+	}
+
 	else {
 		wcscpy_s(m_renderText, 256, sourceText());
 	}
 
-	if (getId() == ID_TEXT_LIFE) {
-		swprintf_s(m_renderText, sourceText(), objMgr.getPlayer().getLife());
-	}
 
-	// 文字の震え
+	// --- 文字の震え
 	// NightmareのAfterResult
 	if (getId() == ID_TEXT_AFTER_RESULT_NIGHTMARE) {
 		m_repeatCount = 15;
 		m_repeatOffsetY = 50;
 
+		// EscCnt に応じて震えの強さを変える
 		const int16_t intensity = gameState.EscCnt();
 		if (intensity == 0) {
 			m_drawOffsetX = 0;
@@ -217,6 +222,7 @@ void UI_Text::refreshDrawState(const GameState& gameState, const ObjectManager& 
 			m_drawOffsetY = ((rand() % intensity) - (intensity / 2)) * 2;
 		}
 	}
+
 	// プレイ中に表示される残りライフ数のテキスト
 	else if (getId() == ID_TEXT_LIFE) {
 		m_drawOffsetX = (rand() % 3) - (3 / 2);
@@ -275,7 +281,7 @@ void UI_Text::InitializeFont(HWND hWnd) {
 		L"メイリオ"
 	);
 
-	// Easy
+	// Usually
 	UI_Text::s_hFont_Usually = CreateFontW(
 		// 30pt を DPI に応じてピクセルに変換
 		// （px = pt × DPI / 72）`
@@ -326,7 +332,7 @@ void UI_Text::InitializeFont(HWND hWnd) {
 		L"游明朝"
 	);
 
-	// s_hFont_Lines
+	// Lines
 	UI_Text::s_hFont_Lines = CreateFontW(
 		// 20pt を DPI に応じてピクセルに変換
 		// （px = pt × DPI / 72）
