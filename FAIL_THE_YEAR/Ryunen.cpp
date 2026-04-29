@@ -139,11 +139,9 @@ void Ryunen::InitializeRyunenFont(HWND hWnd) {
 
 	HDC hDC = GetDC(hWnd);
 
-	const int16_t FontSize = kFontSize;
-
 	// フォントの作成、格納
 	Ryunen::sFont = CreateFontW(
-		-MulDiv(FontSize, GetDeviceCaps(hDC, LOGPIXELSY), 72),
+		-MulDiv(kFontSize, GetDeviceCaps(hDC, LOGPIXELSY), 72),
 		0, 2700, 0,  // 2700は90度回転させるための値
 		FW_BOLD,
 		FALSE, FALSE, FALSE,
