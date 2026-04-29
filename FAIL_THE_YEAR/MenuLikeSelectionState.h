@@ -29,8 +29,8 @@ public:
 		constexpr int16_t kCursorX = 310;	// 選択カーソルのX座標（矢印・枠共通）
 		constexpr int16_t kFrameX = 350;	// 選択枠のX座標
 
-		const int16_t TIMER_MAX = 7;		// Esc 連打の減算遅延タイマーの最大値
-		const int16_t ESC_MAX = 30;	// Esc 連打の最大値（これに達すると Nightmare を脱出する）
+		constexpr int16_t TIMER_MAX = 7;		// Esc 連打の減算遅延タイマーの最大値
+		constexpr int16_t ESC_MAX = 30;	// Esc 連打の最大値（これに達すると Nightmare を脱出する）
 
 		// 上下キーで選択カーソルを移動する。
 		// グリッチ感演出の為、

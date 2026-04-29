@@ -29,8 +29,8 @@ public:
         constexpr int16_t kFrameX = 350;
 
         // Nightmare 未クリア時 Esc 連打演出に使う定数
-        const int16_t TIMER_MAX = 7;
-        const int16_t ESC_MAX = 30;
+        constexpr int16_t TIMER_MAX = 7;
+        constexpr int16_t ESC_MAX = 30;
 
         // Nightmare 未クリアの AfterResult かどうか（専用挙動の判定に使用）
         const bool isNightmareUncleared =
