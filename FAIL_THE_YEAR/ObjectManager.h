@@ -16,20 +16,20 @@ class ObjectManager {
 public:
 	ObjectManager();
 
-	Player& GetPlayer() { return player; }
-	const Player& GetPlayer() const { return player; }
+	Player& getPlayer() { return player; }
+	const Player& getPlayer() const { return player; }
 
-	Ryunen& GetRyunen(int index) { return ryunen[index]; }
-	const Ryunen& GetRyunen(int index) const { return ryunen[index]; }
+	Ryunen& getRyunen(int index) { return ryunen[index]; }
+	const Ryunen& getRyunen(int index) const { return ryunen[index]; }
 
-	UI_Image& GetUIImage(int index) { return UIimage[index]; }
-	const UI_Image& GetUIImage(int index) const { return UIimage[index]; }
+	UI_Image& getUIImage(int index) { return UIimage[index]; }
+	const UI_Image& getUIImage(int index) const { return UIimage[index]; }
 
-	UI_Text& GetUIText(int index) { return UItext[index]; }
-	const UI_Text& GetUIText(int index) const { return UItext[index]; }
+	UI_Text& getUIText(int index) { return UItext[index]; }
+	const UI_Text& getUIText(int index) const { return UItext[index]; }
 
-	UI_Shape& GetUIShape(int index) { return UIshape[index]; }
-	const UI_Shape& GetUIShape(int index) const { return UIshape[index]; }
+	UI_Shape& getUIShape(int index) { return UIshape[index]; }
+	const UI_Shape& getUIShape(int index) const { return UIshape[index]; }
 
 	// プレイヤーと留年の衝突判定を行う関数。
 	// 衝突時にステータスを更新し true を返す

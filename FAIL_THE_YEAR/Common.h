@@ -66,6 +66,9 @@ enum class TextId : int16_t {
 	SelDiffBack,
 	SelDiffNormal,
 	SelDiffHard,
+
+	Life,
+
 	ResultClear,
 	ResultFail,
 	ResultEvadeRyunen,
@@ -132,6 +135,7 @@ constexpr int16_t ID_TEXT_SELDIFF                   = static_cast<int16_t>(TextI
 constexpr int16_t ID_TEXT_SELDIFF_BACK              = static_cast<int16_t>(TextId::SelDiffBack);
 constexpr int16_t ID_TEXT_SELDIFF_NORMAL            = static_cast<int16_t>(TextId::SelDiffNormal);
 constexpr int16_t ID_TEXT_SELDIFF_HARD              = static_cast<int16_t>(TextId::SelDiffHard);
+constexpr int16_t ID_TEXT_LIFE  					= static_cast<int16_t>(TextId::Life);
 constexpr int16_t ID_TEXT_RESULT_CLEAR              = static_cast<int16_t>(TextId::ResultClear);
 constexpr int16_t ID_TEXT_RESULT_FAIL               = static_cast<int16_t>(TextId::ResultFail);
 constexpr int16_t ID_TEXT_RESULT_EVADE_RYUNEN       = static_cast<int16_t>(TextId::ResultEvadeRyunen);

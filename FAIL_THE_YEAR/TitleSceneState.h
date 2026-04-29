@@ -33,15 +33,15 @@ public:
 		if (manager.getOldSceneType() != SceneId::Title) {
 			DEBUG_LOG("currentScene : Title\n");
 			manager.setOldSceneType(SceneId::Title);
-			services.objMgr.GetUIText(ID_TEXT_TITLE).setActCnt(0);
+			services.objMgr.getUIText(ID_TEXT_TITLE).setActCnt(0);
 			services.gameState.SetCurrentDifficulty(Difficulty::Easy);
 		}
 
-     UiVisibilityBatchHelper::SetImagesVisible(services.objMgr, { ID_IMAGE_LOGO });
+		UiVisibilityBatchHelper::SetImagesVisible(services.objMgr, { ID_IMAGE_LOGO, });
 
 		// ActCnt が BLINK_INTERVAL を超えたら非表示にし、
 		// さらに超えたらリセットして点滅を繰り返す
-		UI_Text::UpdateBlink(services.objMgr.GetUIText(ID_TEXT_TITLE));
+		UI_Text::UpdateBlink(services.objMgr.getUIText(ID_TEXT_TITLE));
 	}
 };
 

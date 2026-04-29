@@ -14,7 +14,7 @@
 #include "resource.h"
 #pragma warning(pop)
 
-// UI_Text の実装
+ // UI_Text の実装
 UI_Text::UI_Text() {
 	m_SizeFont = nullptr;
 	m_drawColor = RGB(0, 0, 0);
@@ -30,7 +30,7 @@ UI_Text::~UI_Text() {}
 
 // 静的フォント変数の定義
 HFONT UI_Text::s_hFont_Small = nullptr;
-HFONT UI_Text::s_hFont_Easy = nullptr;
+HFONT UI_Text::s_hFont_Usually = nullptr;
 HFONT UI_Text::s_hFont_Large = nullptr;
 HFONT UI_Text::s_hFont_ExtraLarge = nullptr;
 HFONT UI_Text::s_hFont_Lines = nullptr;
@@ -39,12 +39,13 @@ HFONT UI_Text::s_hFont_Lines = nullptr;
 namespace {
 
 	// フォントサイズの識別子
-	enum class FontType : int16_t { 
-		Small, 
-		Easy, 
-		Large, 
-		ExtraLarge, 
-		Lines };
+	enum class FontType : int16_t {
+		Small,
+		Normal,
+		Large,
+		ExtraLarge,
+		Lines,
+	};
 
 	struct TextInitEntry {
 		int16_t   id;
@@ -56,23 +57,26 @@ namespace {
 	static const TextInitEntry kTextEntries[] = {
 
 		// --- メインメニュー ---
-		{ ID_TEXT_TITLE,                  FontType::Easy,       IDS_TITLE,                  180, 500 },
+		{ ID_TEXT_TITLE,                  FontType::Normal,     IDS_TITLE,                  180, 500 },
 		{ ID_TEXT_MENU_PLAY,              FontType::Large,      IDS_MENU_PLAY,              390, 270 },
 		{ ID_TEXT_MENU_TUTORIAL,          FontType::Large,      IDS_MENU_TUTORIAL,          355, 370 },
 		{ ID_TEXT_MENU_BACK,              FontType::Small,      IDS_MENU_BACK,                0,   0 },
 
 		// --- 難易度選択 ---
-		{ ID_TEXT_SELDIFF,                FontType::Easy,       IDS_SELDIFF,                473,  90 },
+		{ ID_TEXT_SELDIFF,                FontType::Normal,     IDS_SELDIFF,                473,  90 },
 		{ ID_TEXT_SELDIFF_BACK,           FontType::Small,      IDS_SELDIFF_BACK,             0,   0 },
 		{ ID_TEXT_SELDIFF_NORMAL,         FontType::Large,      IDS_SELDIFF_NORMAL,         385, 270 },
 		{ ID_TEXT_SELDIFF_HARD,           FontType::Large,      IDS_SELDIFF_HARD,           385, 370 },
+
+		// --- ゲーム中UI ---
+		{ ID_TEXT_LIFE,					  FontType::Lines,      IDS_LIFE,					500, 335 },
 
 		// --- リザルト ---
 		{ ID_TEXT_RESULT_CLEAR,           FontType::ExtraLarge, IDS_RESULT_CLEAR,           155,  50 },
 		{ ID_TEXT_RESULT_FAIL,            FontType::ExtraLarge, IDS_RESULT_FAIL,            295,  50 },
 		{ ID_TEXT_RESULT_EVADE_RYUNEN,    FontType::Large,      IDS_RESULT_EVADE_RYUNEN,    240, 280 },
 		{ ID_TEXT_RESULT_EVADE_SHINKYU,   FontType::Large,      IDS_RESULT_EVADE_SHINKYU,   240, 370 },
-		{ ID_TEXT_RESULT_NEXT,            FontType::Easy,       IDS_RESULT_NEXT,            430, 520 },
+		{ ID_TEXT_RESULT_NEXT,            FontType::Normal,     IDS_RESULT_NEXT,            430, 520 },
 		{ ID_TEXT_AFTER_RESULT_RETRY,     FontType::Large,      IDS_AFTER_RESULT_RETRY,     390, 270 },
 		{ ID_TEXT_AFTER_RESULT_TITLE,     FontType::Large,      IDS_AFTER_RESULT_TITLE,     355, 370 },
 		{ ID_TEXT_BEST_EVADE_CNT,         FontType::Small,      IDS_BEST_EVADE_CNT,         800,   0 },
@@ -80,36 +84,36 @@ namespace {
 		// --- チュートリアル ---
 		{ ID_TEXT_T_TITLE,                FontType::ExtraLarge, IDS_T_TITLE,                 70,  50 },
 		{ ID_TEXT_T_CONSEPT1,             FontType::Large,      IDS_T_CONSEPT1,              70, 290 },
-		{ ID_TEXT_T_CONSEPT2,             FontType::Easy,       IDS_T_CONSEPT2,             180, 470 },
+		{ ID_TEXT_T_CONSEPT2,             FontType::Normal,     IDS_T_CONSEPT2,             180, 470 },
 		{ ID_TEXT_T_MOVE,                 FontType::Large,      IDS_T_MOVE,                  70,  50 },
-		{ ID_TEXT_T_M_EXPL1,              FontType::Easy,       IDS_T_M_EXPL1,               70, 200 },
-		{ ID_TEXT_T_M_EXPL2,              FontType::Easy,       IDS_T_M_EXPL2,               70, 400 },
-		{ ID_TEXT_T_M_EXPL3,              FontType::Easy,       IDS_T_M_EXPL3,              170, 450 },
+		{ ID_TEXT_T_M_EXPL1,              FontType::Normal,     IDS_T_M_EXPL1,               70, 200 },
+		{ ID_TEXT_T_M_EXPL2,              FontType::Normal,     IDS_T_M_EXPL2,               70, 400 },
+		{ ID_TEXT_T_M_EXPL3,              FontType::Normal,     IDS_T_M_EXPL3,              170, 450 },
 		{ ID_TEXT_T_RYUNEN,               FontType::Large,      IDS_T_RYUNEN,                70,  50 },
-		{ ID_TEXT_T_R_EXPL1,              FontType::Easy,       IDS_T_R_EXPL1,               70, 200 },
-		{ ID_TEXT_T_R_EXPL2,              FontType::Easy,       IDS_T_R_EXPL2,               70, 280 },
-		{ ID_TEXT_T_R_EXPL3,              FontType::Easy,       IDS_T_R_EXPL3,               70, 470 },
+		{ ID_TEXT_T_R_EXPL1,              FontType::Normal,     IDS_T_R_EXPL1,               70, 200 },
+		{ ID_TEXT_T_R_EXPL2,              FontType::Normal,     IDS_T_R_EXPL2,               70, 280 },
+		{ ID_TEXT_T_R_EXPL3,              FontType::Normal,     IDS_T_R_EXPL3,               70, 470 },
 		{ ID_TEXT_T_LIFE,                 FontType::Large,      IDS_T_LIFE,                  70,  50 },
-		{ ID_TEXT_T_L_EXPL1,              FontType::Easy,       IDS_T_L_EXPL1,               70, 200 },
-		{ ID_TEXT_T_L_EXPL2,              FontType::Easy,       IDS_T_L_EXPL2,              170, 250 },
-		{ ID_TEXT_T_L_EXPL3,              FontType::Easy,       IDS_T_L_EXPL3,               70, 330 },
-		{ ID_TEXT_T_L_EXPL4,              FontType::Easy,       IDS_T_L_EXPL4,               70, 500 },
-		{ ID_TEXT_T_L_EXPL5,              FontType::Easy,       IDS_T_L_EXPL5,              170, 550 },
+		{ ID_TEXT_T_L_EXPL1,              FontType::Normal,     IDS_T_L_EXPL1,               70, 200 },
+		{ ID_TEXT_T_L_EXPL2,              FontType::Normal,     IDS_T_L_EXPL2,              170, 250 },
+		{ ID_TEXT_T_L_EXPL3,              FontType::Normal,     IDS_T_L_EXPL3,               70, 390 },
+		{ ID_TEXT_T_L_EXPL4,              FontType::Normal,     IDS_T_L_EXPL4,               70, 500 },
+		{ ID_TEXT_T_L_EXPL5,              FontType::Normal,     IDS_T_L_EXPL5,              170, 550 },
 		{ ID_TEXT_T_BOMB,                 FontType::Large,      IDS_T_BOMB,                  70,  50 },
-		{ ID_TEXT_T_B_EXPL1,              FontType::Easy,       IDS_T_B_EXPL1,               70, 200 },
-		{ ID_TEXT_T_B_EXPL2,              FontType::Easy,       IDS_T_B_EXPL2,              170, 250 },
-		{ ID_TEXT_T_B_EXPL3,              FontType::Easy,       IDS_T_B_EXPL3,               70, 450 },
+		{ ID_TEXT_T_B_EXPL1,              FontType::Normal,     IDS_T_B_EXPL1,               70, 200 },
+		{ ID_TEXT_T_B_EXPL2,              FontType::Normal,     IDS_T_B_EXPL2,              170, 250 },
+		{ ID_TEXT_T_B_EXPL3,              FontType::Normal,     IDS_T_B_EXPL3,               70, 450 },
 		{ ID_TEXT_T_CLEAR,                FontType::Large,      IDS_T_CLEAR,                 70,  50 },
-		{ ID_TEXT_T_C_EXPL1,              FontType::Easy,       IDS_T_C_EXPL1,               70, 200 },
-		{ ID_TEXT_T_C_EXPL2,              FontType::Easy,       IDS_T_C_EXPL2,              170, 250 },
+		{ ID_TEXT_T_C_EXPL1,              FontType::Normal,     IDS_T_C_EXPL1,               70, 200 },
+		{ ID_TEXT_T_C_EXPL2,              FontType::Normal,     IDS_T_C_EXPL2,              170, 250 },
 		{ ID_TEXT_T_C_EXPL3,              FontType::Small,      IDS_T_C_EXPL3,              490, 350 },
 		{ ID_TEXT_T_C_EXPL4,              FontType::Lines,      IDS_T_C_EXPL4,              350, 463 },
 		{ ID_TEXT_T_AFTER_CLEAR,          FontType::Large,      IDS_T_AFTER_CLEAR,           70,  50 },
-		{ ID_TEXT_T_AC_EXPL1,             FontType::Easy,       IDS_T_AC_EXPL1,              70, 230 },
-		{ ID_TEXT_T_AC_EXPL2,             FontType::Easy,       IDS_T_AC_EXPL2,              70, 350 },
-		{ ID_TEXT_T_AC_EXPL3,             FontType::Easy,       IDS_T_AC_EXPL3,              70, 410 },
+		{ ID_TEXT_T_AC_EXPL1,             FontType::Normal,     IDS_T_AC_EXPL1,              70, 230 },
+		{ ID_TEXT_T_AC_EXPL2,             FontType::Normal,     IDS_T_AC_EXPL2,              70, 350 },
+		{ ID_TEXT_T_AC_EXPL3,             FontType::Normal,     IDS_T_AC_EXPL3,              70, 410 },
 		{ ID_TEXT_T_END,                  FontType::Large,      IDS_T_END,                   70,  50 },
-		{ ID_TEXT_T_E_EXPL1,              FontType::Easy,       IDS_T_E_EXPL1,               70, 230 },
+		{ ID_TEXT_T_E_EXPL1,              FontType::Normal,     IDS_T_E_EXPL1,               70, 230 },
 		{ ID_TEXT_T_E_EXPL2,              FontType::Lines,      IDS_T_E_EXPL2,              580, 370 },
 		{ ID_TEXT_T_BACK,                 FontType::Small,      IDS_T_BACK,                   0, 620 },
 		{ ID_TEXT_T_NEXT,                 FontType::Small,      IDS_T_NEXT,                 935, 620 },
@@ -121,10 +125,10 @@ namespace {
 		{ ID_TEXT_ESC_NM,                 FontType::Lines,      IDS_ESC_NM,                 490, 305 },
 
 		// --- Exit ---
-		{ ID_TEXT_E_NEW_GUEST,           FontType::Lines,      IDS_E_NEW_GUEST,             510, 305 },
-		{ ID_TEXT_E_THANKS,              FontType::Lines,      IDS_E_THANKS,                440, 305 },
-		{ ID_TEXT_E_NM_ESC,              FontType::Lines,      IDS_E_NM_ESC,                510, 305 },
-		{ ID_TEXT_E_NM_CLEAR,            FontType::Lines,      IDS_E_NM_CLEAR,              470, 305 },
+		{ ID_TEXT_E_NEW_GUEST,           FontType::Lines,       IDS_E_NEW_GUEST,             510, 305 },
+		{ ID_TEXT_E_THANKS,              FontType::Lines,       IDS_E_THANKS,                440, 305 },
+		{ ID_TEXT_E_NM_ESC,              FontType::Lines,       IDS_E_NM_ESC,                510, 305 },
+		{ ID_TEXT_E_NM_CLEAR,            FontType::Lines,       IDS_E_NM_CLEAR,              470, 305 },
 
 		// --- ポーズ ---
 		{ ID_TEXT_PAUSE,                 FontType::ExtraLarge, IDS_PAUSE,                   158, 230 },
@@ -145,10 +149,10 @@ void UI_Text::setInitData(HINSTANCE hInst, HWND hWnd, int16_t id) {
 	// FontType → HFONT 変換用の配列
 	const HFONT fonts[] = {
 		s_hFont_Small,
-		s_hFont_Easy, 
+		s_hFont_Usually,
 		s_hFont_Large,
-		s_hFont_ExtraLarge, 
-		s_hFont_Lines
+		s_hFont_ExtraLarge,
+		s_hFont_Lines,
 	};
 
 	for (const auto& e : kTextEntries) {
@@ -163,7 +167,7 @@ void UI_Text::setInitData(HINSTANCE hInst, HWND hWnd, int16_t id) {
 }
 
 // 可変表示が必要なテキストの描画文字列/色/震え情報を更新する
-void UI_Text::refreshDrawState(const GameState& gameState) {
+void UI_Text::refreshDrawState(const GameState& gameState, const ObjectManager& objMgr) {
 	m_drawColor = (getId() == ID_TEXT_RESULT_CLEAR) ? RGB(0, 255, 0) : RGB(0, 0, 0);
 	m_drawOffsetX = 0;
 	m_drawOffsetY = 0;
@@ -189,7 +193,12 @@ void UI_Text::refreshDrawState(const GameState& gameState) {
 		wcscpy_s(m_renderText, 256, sourceText());
 	}
 
+	if (getId() == ID_TEXT_LIFE) {
+		swprintf_s(m_renderText, sourceText(), objMgr.getPlayer().getLife());
+	}
+
 	// 文字の震え
+	// NightmareのAfterResult
 	if (getId() == ID_TEXT_AFTER_RESULT_NIGHTMARE) {
 		m_repeatCount = 15;
 		m_repeatOffsetY = 50;
@@ -208,12 +217,19 @@ void UI_Text::refreshDrawState(const GameState& gameState) {
 			m_drawOffsetY = ((rand() % intensity) - (intensity / 2)) * 2;
 		}
 	}
+	// プレイ中に表示される残りライフ数のテキスト
+	else if (getId() == ID_TEXT_LIFE) {
+		m_drawOffsetX = (rand() % 3) - (3 / 2);
+		m_drawOffsetY = (rand() % 3) - (3 / 2);
+	}
+
+
 }
 
 // すべてのテキストUIに対して描画状態更新を適用する
 void UI_Text::RefreshAllDrawStates(ObjectManager& objMgr, const GameState& gameState) {
 	for (int i = ID_BEGIN_TEXT; i < ID_BEGIN_TEXT + MAX_UI_TEXT; ++i) {
-		objMgr.GetUIText(i).refreshDrawState(gameState);
+		objMgr.getUIText(i).refreshDrawState(gameState, objMgr);
 	}
 }
 
@@ -235,7 +251,7 @@ void UI_Text::UpdateBlink(UI_Text& text) {
 // フォントの作成・登録
 void UI_Text::InitializeFont(HWND hWnd) {
 	if (UI_Text::s_hFont_Small != NULL &&
-		UI_Text::s_hFont_Easy != NULL &&
+		UI_Text::s_hFont_Usually != NULL &&
 		UI_Text::s_hFont_Large != NULL &&
 		UI_Text::s_hFont_ExtraLarge != NULL) return;
 
@@ -260,7 +276,7 @@ void UI_Text::InitializeFont(HWND hWnd) {
 	);
 
 	// Easy
-	UI_Text::s_hFont_Easy = CreateFontW(
+	UI_Text::s_hFont_Usually = CreateFontW(
 		// 30pt を DPI に応じてピクセルに変換
 		// （px = pt × DPI / 72）`
 		-MulDiv(30, GetDeviceCaps(hDC, LOGPIXELSY), 72),
@@ -337,7 +353,7 @@ void UI_Text::setSizeFont(HFONT font) {
 
 // 各テキストのフォント設定を呼び出す
 const HFONT UI_Text::getSizeFont(const ObjectManager& objMgr, int16_t id) {
-	return objMgr.GetUIText(id).m_SizeFont;
+	return objMgr.getUIText(id).m_SizeFont;
 }
 
 // フォントの破棄
@@ -346,9 +362,9 @@ void UI_Text::FinalizeFont() {
 		DeleteObject(UI_Text::s_hFont_Small);
 		UI_Text::s_hFont_Small = nullptr;
 	}
-	if (UI_Text::s_hFont_Easy) {
-		DeleteObject(UI_Text::s_hFont_Easy);
-		UI_Text::s_hFont_Easy = nullptr;
+	if (UI_Text::s_hFont_Usually) {
+		DeleteObject(UI_Text::s_hFont_Usually);
+		UI_Text::s_hFont_Usually = nullptr;
 	}
 	if (UI_Text::s_hFont_Large) {
 		DeleteObject(UI_Text::s_hFont_Large);
@@ -362,6 +378,7 @@ void UI_Text::FinalizeFont() {
 		DeleteObject(UI_Text::s_hFont_Lines);
 		UI_Text::s_hFont_Lines = nullptr;
 	}
+
 }
 
 

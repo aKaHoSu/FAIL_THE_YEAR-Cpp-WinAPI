@@ -29,52 +29,52 @@ public:
 			DEBUG_LOG("currentScene : Ready\n");
 			if (services.gameState.CurrentDifficulty() == Difficulty::Nightmare) {
 				services.gameState.SetEvadeGoal(EvadeGoal::Nightmare);
-				services.objMgr.GetPlayer().setLife(1);
-				services.objMgr.GetPlayer().setBombCT(BOMB_CT);
+				services.objMgr.getPlayer().setLife(1);
+				services.objMgr.getPlayer().setBombCT(BOMB_CT);
 				DEBUG_LOG("\tcurrentDiff : Nightmare\n");
 			}
 
 			else if (services.gameState.CurrentDifficulty() == Difficulty::Easy) {
 				services.gameState.SetEvadeGoal(EvadeGoal::Easy);
-				services.objMgr.GetPlayer().setLife(5);
+				services.objMgr.getPlayer().setLife(5);
 				DEBUG_LOG("    currentDiff : Easy\n");
 			}
 
 			else if (services.gameState.CurrentDifficulty() == Difficulty::Hard) {
 				services.gameState.SetEvadeGoal(EvadeGoal::Hard);
-				services.objMgr.GetPlayer().setLife(3);
+				services.objMgr.getPlayer().setLife(3);
 				DEBUG_LOG("    currentDiff : Hard\n");
 			}
 
 			// Easy / Hard は共通のボムクールタイム（Nightmare は別設定のため除外）
 			if (services.gameState.CurrentDifficulty() != Difficulty::Nightmare) {
-				services.objMgr.GetPlayer().setBombCT(BOMB_CT + 1000);
+				services.objMgr.getPlayer().setBombCT(BOMB_CT + 1000);
 			}
 
 			manager.setOldSceneType(SceneId::Ready);
-			services.objMgr.GetUIImage(ID_IMAGE_READY).setActCnt(0);
-			services.objMgr.GetUIImage(ID_IMAGE_START).setActCnt(0);
+			services.objMgr.getUIImage(ID_IMAGE_READY).setActCnt(0);
+			services.objMgr.getUIImage(ID_IMAGE_START).setActCnt(0);
 			for (int i = 0; i < MAX_RYUNEN; i++) {
-				services.objMgr.GetRyunen(i).setVisible(false);
+				services.objMgr.getRyunen(i).setVisible(false);
 			}
 		}
 
-		services.objMgr.GetPlayer().setVisible(true);
+		services.objMgr.getPlayer().setVisible(true);
 
 		// READY 画像を左にスライドして表示し、
 		// 一定時間経過後に START 画像を表示する。
 		// START画像表示終了後に Playing へ遷移する
-		if (services.objMgr.GetUIImage(ID_IMAGE_READY).getActCnt() < 100) {
-			services.objMgr.GetUIImage(ID_IMAGE_READY).setVisible(true);
-			services.objMgr.GetUIImage(ID_IMAGE_READY).setActCnt(services.objMgr.GetUIImage(ID_IMAGE_READY).getActCnt() + 1);
-			services.objMgr.GetUIImage(ID_IMAGE_READY).setPosition(services.objMgr.GetUIImage(ID_IMAGE_READY).getPosition().x - 1, 0);
+		if (services.objMgr.getUIImage(ID_IMAGE_READY).getActCnt() < 100) {
+			services.objMgr.getUIImage(ID_IMAGE_READY).setVisible(true);
+			services.objMgr.getUIImage(ID_IMAGE_READY).setActCnt(services.objMgr.getUIImage(ID_IMAGE_READY).getActCnt() + 1);
+			services.objMgr.getUIImage(ID_IMAGE_READY).setPosition(services.objMgr.getUIImage(ID_IMAGE_READY).getPosition().x - 1, 0);
 		}
-		else if (services.objMgr.GetUIImage(ID_IMAGE_READY).getActCnt() < 130) {
-			services.objMgr.GetUIImage(ID_IMAGE_READY).setActCnt(services.objMgr.GetUIImage(ID_IMAGE_READY).getActCnt() + 1);
+		else if (services.objMgr.getUIImage(ID_IMAGE_READY).getActCnt() < 130) {
+			services.objMgr.getUIImage(ID_IMAGE_READY).setActCnt(services.objMgr.getUIImage(ID_IMAGE_READY).getActCnt() + 1);
 		}
-		else if (services.objMgr.GetUIImage(ID_IMAGE_START).getActCnt() < 50) {
-			services.objMgr.GetUIImage(ID_IMAGE_START).setVisible(true);
-			services.objMgr.GetUIImage(ID_IMAGE_START).setActCnt(services.objMgr.GetUIImage(ID_IMAGE_START).getActCnt() + 1);
+		else if (services.objMgr.getUIImage(ID_IMAGE_START).getActCnt() < 50) {
+			services.objMgr.getUIImage(ID_IMAGE_START).setVisible(true);
+			services.objMgr.getUIImage(ID_IMAGE_START).setActCnt(services.objMgr.getUIImage(ID_IMAGE_START).getActCnt() + 1);
 		}
 		else {
 			manager.setCurrentSceneType(SceneId::Playing);
@@ -107,13 +107,13 @@ public:
 			services.gameState.SetIsFirstPlay(false);
 		}
 
-		services.objMgr.GetPlayer().setVisible(true);
-		services.objMgr.GetUIShape(ID_SHAPE_VEIL).setVisible(true);
+		services.objMgr.getPlayer().setVisible(true);
+		services.objMgr.getUIShape(ID_SHAPE_VEIL).setVisible(true);
 
 		// リザルトに応じてクリア/留年確定テキストと回避数を表示する
 		if (manager.getResultType() == GameResult::Clear) {
-			services.objMgr.GetUIText(ID_TEXT_RESULT_CLEAR).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_RESULT_EVADE_SHINKYU).setVisible(true);
+			services.objMgr.getUIText(ID_TEXT_RESULT_CLEAR).setVisible(true);
+			services.objMgr.getUIText(ID_TEXT_RESULT_EVADE_SHINKYU).setVisible(true);
 
 			if (services.gameState.CurrentDifficulty() == Difficulty::Nightmare) {
 				services.gameState.SetHasEverClearedNightmare(true);
@@ -121,13 +121,13 @@ public:
 			}
 		}
 		else {
-			services.objMgr.GetUIText(ID_TEXT_RESULT_FAIL).setVisible(true);
+			services.objMgr.getUIText(ID_TEXT_RESULT_FAIL).setVisible(true);
 		}
 
-		services.objMgr.GetUIText(ID_TEXT_RESULT_EVADE_RYUNEN).setVisible(true);
+		services.objMgr.getUIText(ID_TEXT_RESULT_EVADE_RYUNEN).setVisible(true);
 
 		// 『Enterキーで次へ』テキストを BLINK_INTERVAL ベースで点滅させる
-		UI_Text::UpdateBlink(services.objMgr.GetUIText(ID_TEXT_RESULT_NEXT));
+		UI_Text::UpdateBlink(services.objMgr.getUIText(ID_TEXT_RESULT_NEXT));
 	}
 
 	// AfterResult シーンの表示設定。
@@ -140,17 +140,17 @@ public:
 
 		if (services.gameState.CurrentDifficulty() == Difficulty::Nightmare
 			&& !services.gameState.HasEverClearedNightmare()) {
-			services.objMgr.GetUIText(ID_TEXT_AFTER_RESULT_NIGHTMARE).setVisible(true);
+			services.objMgr.getUIText(ID_TEXT_AFTER_RESULT_NIGHTMARE).setVisible(true);
 		}
 		else {
-			services.objMgr.GetPlayer().setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_AFTER_RESULT_RETRY).setVisible(true);
-			services.objMgr.GetUIText(ID_TEXT_AFTER_RESULT_TITLE).setVisible(true);
+			services.objMgr.getPlayer().setVisible(true);
+			services.objMgr.getUIText(ID_TEXT_AFTER_RESULT_RETRY).setVisible(true);
+			services.objMgr.getUIText(ID_TEXT_AFTER_RESULT_TITLE).setVisible(true);
 		}
 
-		services.objMgr.GetUIShape(ID_SHAPE_VEIL).setVisible(true);
-		services.objMgr.GetUIShape(ID_SHAPE_SELECTING_TRIANGLE).setVisible(true);
-		services.objMgr.GetUIShape(ID_SHAPE_SELECTING_RECTANGLE).setVisible(true);
+		services.objMgr.getUIShape(ID_SHAPE_VEIL).setVisible(true);
+		services.objMgr.getUIShape(ID_SHAPE_SELECTING_TRIANGLE).setVisible(true);
+		services.objMgr.getUIShape(ID_SHAPE_SELECTING_RECTANGLE).setVisible(true);
 	}
 
 	// EscNightmare シーンの表示設定。
@@ -159,18 +159,18 @@ public:
 		if (manager.getOldSceneType() != SceneId::EscNightmare) {
 			DEBUG_LOG("currentScene : EscNightmare\n");
 			manager.setOldSceneType(SceneId::EscNightmare);
-			services.objMgr.GetUIText(ID_TEXT_ESC_NM).setActCnt(0);
+			services.objMgr.getUIText(ID_TEXT_ESC_NM).setActCnt(0);
 			services.gameState.SetHasEverEscapedNightmare(true);
 		}
 
-		services.objMgr.GetUIText(ID_TEXT_ESC_NM).setActCnt
-		(services.objMgr.GetUIText(ID_TEXT_ESC_NM).getActCnt() + 1);
+		services.objMgr.getUIText(ID_TEXT_ESC_NM).setActCnt
+		(services.objMgr.getUIText(ID_TEXT_ESC_NM).getActCnt() + 1);
 
-		if (services.objMgr.GetUIText(ID_TEXT_ESC_NM).getActCnt() <= 50) {
-			services.objMgr.GetUIText(ID_TEXT_ESC_NM).setVisible(true);
+		if (services.objMgr.getUIText(ID_TEXT_ESC_NM).getActCnt() <= 50) {
+			services.objMgr.getUIText(ID_TEXT_ESC_NM).setVisible(true);
 		}
 
-		if (services.objMgr.GetUIText(ID_TEXT_ESC_NM).getActCnt() >= 100)
+		if (services.objMgr.getUIText(ID_TEXT_ESC_NM).getActCnt() >= 100)
 			manager.setCurrentSceneType(SceneId::Title);
 	}
 };

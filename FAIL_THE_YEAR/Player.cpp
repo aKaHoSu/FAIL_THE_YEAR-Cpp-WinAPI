@@ -23,7 +23,7 @@ namespace {
 	constexpr int16_t kInitialY          = 650;		// 初期Y座標基準値
 	constexpr int16_t kBlinkDivisor      = 5;		// ダメージ点滅周期
 	constexpr int16_t kShakeIntensityNightmare = 8; // Nightmareモードの揺れ強度
-	constexpr int16_t kShakeIntensityEasy = 3;		// Nightmareモード以外の揺れ強度
+	constexpr int16_t kShakeIntensityUsually = 3;		// Nightmareモード以外の揺れ強度
 	constexpr double  kMagicSignAngleStep = 0.04;	// 魔法陣の回転角度ステップ( = 回転速度)
 	constexpr double  kMagicSignAngleWrap = 6.283185307179586; // 魔法陣の回転角度のラップ値(360度)
 }
@@ -180,7 +180,7 @@ void Player::useBomb(ObjectManager& objMgr) {
 		return;
 	}
 
-	if (objMgr.GetPlayer().getStatusType() == PlayerStatus::Damage) {
+	if (objMgr.getPlayer().getStatusType() == PlayerStatus::Damage) {
 		DEBUG_LOG("Bomb is currently unavailable.\n");
 		return;
 	}
@@ -191,8 +191,8 @@ void Player::useBomb(ObjectManager& objMgr) {
 
 	// 表示されているすべての留年を強制的に着地状態(=無効状態)にする
 	for (int i = 0; i < MAX_RYUNEN; i++) {
-		if (objMgr.GetRyunen(i).getStatusType() == RyunenStatus::Falling) {
-			objMgr.GetRyunen(i).setStatusType(RyunenStatus::Landed);
+		if (objMgr.getRyunen(i).getStatusType() == RyunenStatus::Falling) {
+			objMgr.getRyunen(i).setStatusType(RyunenStatus::Landed);
 		}
 	}
 }
@@ -201,7 +201,7 @@ void Player::useBomb(ObjectManager& objMgr) {
 void Player::updateDrawState(const SceneManager& sceneManager, const GameState& gameState) {
 	const int16_t intensity = (gameState.CurrentDifficulty() == Difficulty::Nightmare)
 		? kShakeIntensityNightmare
-		: kShakeIntensityEasy;
+		: kShakeIntensityUsually;
 
 	if ((sceneManager.getCurrentSceneType() == SceneId::Tutorial &&
 		sceneManager.getCurrentTutorialStepType() == TutorialStepId::Consept) ||

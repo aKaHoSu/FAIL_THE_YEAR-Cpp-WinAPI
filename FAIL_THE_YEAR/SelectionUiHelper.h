@@ -38,7 +38,7 @@ public:
         const int16_t cursorY = (selection == 0) ? topCursorY : bottomCursorY;
         const int16_t frameY = static_cast<int16_t>(cursorY - 32);
 
-        objMgr.GetUIShape(ID_SHAPE_SELECTING_TRIANGLE).setPosition(cursorX, cursorY);
-        objMgr.GetUIShape(ID_SHAPE_SELECTING_RECTANGLE).setPosition(frameX, frameY);
+        objMgr.getUIShape(ID_SHAPE_SELECTING_TRIANGLE).setPosition(cursorX, cursorY);
+        objMgr.getUIShape(ID_SHAPE_SELECTING_RECTANGLE).setPosition(frameX, frameY);
     }
 };

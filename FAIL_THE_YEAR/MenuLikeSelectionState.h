@@ -17,20 +17,20 @@ public:
 	// キー入力処理。
 	// カーソル移動、難易度選択、Nightmare の Esc 連打を担当。
 	static void HandleInput(
-		SceneManager&	  manager,
+		SceneManager& manager,
 		int16_t			  sceneNow,
 		const KeyManager& key,
 		HINSTANCE		  hInst,
 		HWND			  hWnd,
-		SceneServices&	  services
+		SceneServices& services
 	)
 	{
 		const SceneId sceneNowType = static_cast<SceneId>(sceneNow);
 		constexpr int16_t kCursorX = 310;	// 選択カーソルのX座標（矢印・枠共通）
-		constexpr int16_t kFrameX  = 350;	// 選択枠のX座標
+		constexpr int16_t kFrameX = 350;	// 選択枠のX座標
 
-		const int16_t TIMER_MAX	   = 7;		// Esc 連打の減算遅延タイマーの最大値
-		const int16_t ESC_MAX	   = 30;	// Esc 連打の最大値（これに達すると Nightmare を脱出する）
+		const int16_t TIMER_MAX = 7;		// Esc 連打の減算遅延タイマーの最大値
+		const int16_t ESC_MAX = 30;	// Esc 連打の最大値（これに達すると Nightmare を脱出する）
 
 		// 上下キーで選択カーソルを移動する。
 		// グリッチ感演出の為、
@@ -39,19 +39,19 @@ public:
 			if (m_menuSelection == 1 ||
 				(manager.getCurrentSceneType() == SceneId::AfterResult &&
 					services.gameState.CurrentDifficulty() == Difficulty::Nightmare &&
-							!services.gameState.HasEverClearedNightmare())) {
-							m_menuSelection--;
-						}
-					}
+					!services.gameState.HasEverClearedNightmare())) {
+				m_menuSelection--;
+			}
+		}
 
-					if (key.IsTriggered(KeyManager::Down)) {
-						if (m_menuSelection == 0 ||
+		if (key.IsTriggered(KeyManager::Down)) {
+			if (m_menuSelection == 0 ||
 				(manager.getCurrentSceneType() == SceneId::AfterResult &&
 					services.gameState.CurrentDifficulty() == Difficulty::Nightmare &&
-							!services.gameState.HasEverClearedNightmare())) {
-							m_menuSelection++;
-						}
-					}
+					!services.gameState.HasEverClearedNightmare())) {
+				m_menuSelection++;
+			}
+		}
 
 		// 非クリア以外、かつ SelectDifficulty 時のみ、
 		// 左右キーで Nightmare 選択を可能にする。
@@ -83,8 +83,8 @@ public:
 		switch (m_menuSelection) {
 		case 0:
 			// カーソルを上項目（Play / Easy / Retry）に置く。
-			services.objMgr.GetUIShape(ID_SHAPE_SELECTING_TRIANGLE).setPosition(kCursorX, 300);
-			services.objMgr.GetUIShape(ID_SHAPE_SELECTING_RECTANGLE).setPosition(kFrameX, 268);
+			services.objMgr.getUIShape(ID_SHAPE_SELECTING_TRIANGLE).setPosition(kCursorX, 300);
+			services.objMgr.getUIShape(ID_SHAPE_SELECTING_RECTANGLE).setPosition(kFrameX, 268);
 
 			// Enter キーでシーン遷移する。
 			if (key.IsTriggered(KeyManager::Enter)) {
@@ -108,8 +108,8 @@ public:
 
 		case 1:
 			// カーソルを下項目（Tutorial / Hard / Title）に置く。
-			services.objMgr.GetUIShape(ID_SHAPE_SELECTING_TRIANGLE).setPosition(kCursorX, 400);
-			services.objMgr.GetUIShape(ID_SHAPE_SELECTING_RECTANGLE).setPosition(kFrameX, 368);
+			services.objMgr.getUIShape(ID_SHAPE_SELECTING_TRIANGLE).setPosition(kCursorX, 400);
+			services.objMgr.getUIShape(ID_SHAPE_SELECTING_RECTANGLE).setPosition(kFrameX, 368);
 
 			if (key.IsTriggered(KeyManager::Enter)) {
 				if (manager.getCurrentSceneType() == SceneId::Menu) {
@@ -138,8 +138,8 @@ public:
 				break;
 			}
 
-			services.objMgr.GetUIShape(ID_SHAPE_SELECTING_TRIANGLE).setPosition(1080, 352);
-			services.objMgr.GetUIShape(ID_SHAPE_SELECTING_RECTANGLE).setPosition(1120, 320);
+			services.objMgr.getUIShape(ID_SHAPE_SELECTING_TRIANGLE).setPosition(1080, 352);
+			services.objMgr.getUIShape(ID_SHAPE_SELECTING_RECTANGLE).setPosition(1120, 320);
 
 			if (key.IsTriggered(KeyManager::Enter)) {
 				services.gameState.SetCurrentDifficulty(Difficulty::Nightmare);
@@ -208,11 +208,11 @@ public:
 			manager.setOldSceneType(SceneId::Menu);
 		}
 
-		services.objMgr.GetUIText(ID_TEXT_MENU_PLAY).setVisible(true);
-		services.objMgr.GetUIText(ID_TEXT_MENU_TUTORIAL).setVisible(true);
-		services.objMgr.GetUIText(ID_TEXT_MENU_BACK).setVisible(true);
-		services.objMgr.GetUIShape(ID_SHAPE_SELECTING_TRIANGLE).setVisible(true);
-		services.objMgr.GetUIShape(ID_SHAPE_SELECTING_RECTANGLE).setVisible(true);
+		services.objMgr.getUIText(ID_TEXT_MENU_PLAY).setVisible(true);
+		services.objMgr.getUIText(ID_TEXT_MENU_TUTORIAL).setVisible(true);
+		services.objMgr.getUIText(ID_TEXT_MENU_BACK).setVisible(true);
+		services.objMgr.getUIShape(ID_SHAPE_SELECTING_TRIANGLE).setVisible(true);
+		services.objMgr.getUIShape(ID_SHAPE_SELECTING_RECTANGLE).setVisible(true);
 	}
 
 	// 難易度選択シーンの表示項目を設定する。
@@ -223,16 +223,16 @@ public:
 			manager.setOldSceneType(SceneId::SelectDifficulty);
 		}
 
-		services.objMgr.GetUIText(ID_TEXT_SELDIFF).setVisible(true);
-		services.objMgr.GetUIText(ID_TEXT_SELDIFF_BACK).setVisible(true);
-		services.objMgr.GetUIText(ID_TEXT_SELDIFF_NORMAL).setVisible(true);
-		services.objMgr.GetUIText(ID_TEXT_SELDIFF_HARD).setVisible(true);
+		services.objMgr.getUIText(ID_TEXT_SELDIFF).setVisible(true);
+		services.objMgr.getUIText(ID_TEXT_SELDIFF_BACK).setVisible(true);
+		services.objMgr.getUIText(ID_TEXT_SELDIFF_NORMAL).setVisible(true);
+		services.objMgr.getUIText(ID_TEXT_SELDIFF_HARD).setVisible(true);
 		if (services.gameState.HasEverCleared())
-			services.objMgr.GetUIText(ID_TEXT_SELDIFF_NIGHTMARE).setVisible(true);
+			services.objMgr.getUIText(ID_TEXT_SELDIFF_NIGHTMARE).setVisible(true);
 
-		services.objMgr.GetUIShape(ID_SHAPE_FRAME_SELDIFF).setVisible(true);
-		services.objMgr.GetUIShape(ID_SHAPE_SELECTING_TRIANGLE).setVisible(true);
-		services.objMgr.GetUIShape(ID_SHAPE_SELECTING_RECTANGLE).setVisible(true);
+		services.objMgr.getUIShape(ID_SHAPE_FRAME_SELDIFF).setVisible(true);
+		services.objMgr.getUIShape(ID_SHAPE_SELECTING_TRIANGLE).setVisible(true);
+		services.objMgr.getUIShape(ID_SHAPE_SELECTING_RECTANGLE).setVisible(true);
 	}
 
 private:

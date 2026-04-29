@@ -77,8 +77,8 @@ public:
 				break;
 			}
 			// Nightmare 項目にカーソルを合わせる
-			services.objMgr.GetUIShape(ID_SHAPE_SELECTING_TRIANGLE).setPosition(1080, 352);
-			services.objMgr.GetUIShape(ID_SHAPE_SELECTING_RECTANGLE).setPosition(1120, 320);
+			services.objMgr.getUIShape(ID_SHAPE_SELECTING_TRIANGLE).setPosition(1080, 352);
+			services.objMgr.getUIShape(ID_SHAPE_SELECTING_RECTANGLE).setPosition(1120, 320);
 			if (key.IsTriggered(KeyManager::Enter)) {
 				// Nightmare でゲーム開始準備
 				services.gameState.SetCurrentDifficulty(Difficulty::Nightmare);

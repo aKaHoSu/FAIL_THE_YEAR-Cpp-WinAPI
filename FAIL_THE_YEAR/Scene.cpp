@@ -87,7 +87,7 @@ void SceneManager::Update(
 		// Esc: プレイ中かつプレイヤー生存中のみポーズを切り替える
 		if (key.IsTriggered(KeyManager::Esc) &&
 			getResultType() == GameResult::None &&
-			services.objMgr.GetPlayer().getLife() >= 1) {
+			services.objMgr.getPlayer().getLife() >= 1) {
 			TogglePaused();
 		}
 		if (!IsPaused()) {
@@ -203,12 +203,12 @@ void SceneManager::SceneLoop(HINSTANCE hInst, HWND hWnd, const KeyManager& key, 
 			!(currentSceneType == SceneId::AfterResult &&
 				services.gameState.CurrentDifficulty() == Difficulty::Nightmare)) {
 
-			services.objMgr.GetUIText(ID_TEXT_BEST_EVADE_CNT).setVisible(true);
+			services.objMgr.getUIText(ID_TEXT_BEST_EVADE_CNT).setVisible(true);
 		}
 	}
 
 	// 描画で使う状態は更新側で確定する
-	services.objMgr.GetPlayer().advanceMagicSignAngle();
+	services.objMgr.getPlayer().advanceMagicSignAngle();
 	services.gameState.SetShouldDrawNightmareFade(
 		(getCurrentSceneType() == SceneId::AfterResult &&
 			services.gameState.CurrentDifficulty() == Difficulty::Nightmare));

@@ -45,8 +45,8 @@ public:
 	static void SpawnRyunen(SceneManager& manager, SceneServices& services) {
 		for (int i = 0; i < services.gameState.RyunenCount(); ++i) {
 			// 未表示または未配置のスロットを探し、プレイ中のみ1体ずつ補充する
-			if ((services.objMgr.GetRyunen(i).isVisible() == false ||
-				services.objMgr.GetRyunen(i).getPositionFlg() == false) &&
+			if ((services.objMgr.getRyunen(i).isVisible() == false ||
+				services.objMgr.getRyunen(i).getPositionFlg() == false) &&
 				(services.gameState.CanSpawn() && manager.getResultType() == GameResult::None)) {
 				float spawnX;
 				// 先頭2体は端固定、3体目以降はランダム配置
@@ -59,7 +59,7 @@ public:
 				else {
 					spawnX = static_cast<float>(rand() % (RIGHT_FIX - 100) + 100);
 				}
-				services.objMgr.GetRyunen(i).SpawnAt(spawnX);
+				services.objMgr.getRyunen(i).SpawnAt(spawnX);
 				// 1フレームに1体のみ生成する
 				break;
 			}
@@ -70,13 +70,13 @@ public:
 	static void UpdateEntities(SceneManager& manager, const KeyManager& key, SceneServices& services) {
 		// 勝敗未確定中のみプレイヤー操作を更新
 		if (manager.getCurrentSceneType() == SceneId::Playing && manager.getResultType() == GameResult::None) {
-			services.objMgr.GetPlayer().Action(key, manager, services.objMgr, services.gameState);
+			services.objMgr.getPlayer().Action(key, manager, services.objMgr, services.gameState);
 		}
 
 		// 表示中の留年のみ挙動更新
 		for (int i = 0; i < MAX_RYUNEN; ++i) {
-			if (services.objMgr.GetRyunen(i).isVisible()) {
-				services.objMgr.GetRyunen(i).Action(manager, services.gameState);
+			if (services.objMgr.getRyunen(i).isVisible()) {
+				services.objMgr.getRyunen(i).Action(manager, services.gameState);
 			}
 		}
 	}

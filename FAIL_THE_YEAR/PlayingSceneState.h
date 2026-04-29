@@ -19,7 +19,7 @@ public:
 	static void HandleInput(SceneManager& manager, const KeyManager& key, SceneServices& services) {
 		if (key.IsTriggered(KeyManager::Z) || key.IsTriggered(KeyManager::P)) {
 			// ボム使用可否の判定は Player::useBomb 側で行う
-			services.objMgr.GetPlayer().useBomb(services.objMgr);
+			services.objMgr.getPlayer().useBomb(services.objMgr);
 		}
 	}
 
@@ -41,15 +41,21 @@ public:
 		PlayingSpawnAndEntitySystem::UpdateRyunenCount(spawnInterval, services);
 
 		// エンティティ更新（プレイヤー/留年）と衝突判定
-		services.objMgr.GetPlayer().setVisible(true);
+		services.objMgr.getPlayer().setVisible(true);
 		PlayingSpawnAndEntitySystem::SpawnRyunen(manager, services);
-		PlayingSpawnAndEntitySystem::UpdateEntities(manager, key, services);
 		services.objMgr.checkHitBetweenPlayerAndRyunen(services.gameState);
+		PlayingSpawnAndEntitySystem::UpdateEntities(manager, key, services);
 
 		// 勝敗判定・進級確定判定・カットイン演出更新
 		PlayingOutcomeSystem::EvaluateGameResult(manager, services);
 		PlayingOutcomeSystem::EvaluateCanAdv(manager, services);
 		PlayingOutcomeSystem::UpdateCanAdvCutIn(manager, services);
+
+		// プレイヤーがDamage状態かつSUN値が1以上のときに、残りのSUN値を表示する
+		if (services.objMgr.getPlayer().getStatusType() == PlayerStatus::Damage	&&
+			services.objMgr.getPlayer().getLife() > 0) {
+			UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, { ID_TEXT_LIFE });
+		}
 
 		// 勝敗確定後、全留年が画面外になったら Result へ遷移
 		if (PlayingOutcomeSystem::CheckAllOffScreen(services) &&

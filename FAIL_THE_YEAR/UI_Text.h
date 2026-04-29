@@ -27,7 +27,7 @@ public:
 
 	static void FinalizeFont();	// WM_DESTROYで呼び出される
 
-	void refreshDrawState(const GameState& gameState);
+	void refreshDrawState(const GameState& gameState, const ObjectManager& objMgr);
 	static void RefreshAllDrawStates(ObjectManager& objMgr, const GameState& gameState);
 
 	// ActCnt が BLINK_INTERVAL を超えたら非表示にし、
@@ -43,7 +43,7 @@ public:
 protected:
 	// フォント(小/中/大/特大)
 	static HFONT s_hFont_Small;
-	static HFONT s_hFont_Easy;
+	static HFONT s_hFont_Usually;
 	static HFONT s_hFont_Large;
 	static HFONT s_hFont_ExtraLarge;
 	static HFONT s_hFont_Lines;

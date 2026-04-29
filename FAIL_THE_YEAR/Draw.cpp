@@ -23,50 +23,50 @@ void Draw::DrawAll(HDC hDC, const ObjectManager& objMgr, const GameState& gameSt
 	/* --- 各オブジェクトの描画処理をラムダ関数として定義 --- */
 	auto drawRyunenLayer = [&]() {
 		for (int i = 0; i < MAX_RYUNEN; ++i) {
-			if (objMgr.GetRyunen(i).isVisible()) {
-				DrawRyunenObject(hDC, objMgr.GetRyunen(i));
-				DrawHitBox(hDC, objMgr.GetRyunen(i), gameState);
+			if (objMgr.getRyunen(i).isVisible()) {
+				DrawRyunenObject(hDC, objMgr.getRyunen(i));
+				DrawHitBox(hDC, objMgr.getRyunen(i), gameState);
 			}
 		}
 	};
 
 	auto drawUiImageLayer = [&]() {
 		for (int i = ID_BEGIN_IMAGE; i < ID_BEGIN_IMAGE + MAX_UI_IMAGE; ++i) {
-			if (objMgr.GetUIImage(i).isVisible()) {
-				DrawImageObject(hDC, objMgr.GetUIImage(i));
+			if (objMgr.getUIImage(i).isVisible()) {
+				DrawImageObject(hDC, objMgr.getUIImage(i));
 			}
 		}
 	};
 
 	auto drawPlayerLayer = [&]() {
-		if (!objMgr.GetPlayer().isVisible()) {
+		if (!objMgr.getPlayer().isVisible()) {
 			return;
 		}
 
-		if (objMgr.GetPlayer().isHasBomb()) {
-			DrawMagicSign(hDC, objMgr.GetPlayer());
+		if (objMgr.getPlayer().isHasBomb()) {
+			DrawMagicSign(hDC, objMgr.getPlayer());
 		}
 
-		DrawHitBox(hDC, objMgr.GetPlayer(), gameState);
+		DrawHitBox(hDC, objMgr.getPlayer(), gameState);
 		DrawImageObject(
 			hDC,
-			objMgr.GetPlayer(),
-			objMgr.GetPlayer().getDrawOffsetX(),
-			objMgr.GetPlayer().getDrawOffsetY());
+			objMgr.getPlayer(),
+			objMgr.getPlayer().getDrawOffsetX(),
+			objMgr.getPlayer().getDrawOffsetY());
 	};
 
 	auto drawUiShapeLayer = [&]() {
 		for (int i = 0; i < MAX_UI_SHAPE; ++i) {
-			if (objMgr.GetUIShape(i).isVisible()) {
-				DrawShapeObject(hDC, objMgr.GetUIShape(i));
+			if (objMgr.getUIShape(i).isVisible()) {
+				DrawShapeObject(hDC, objMgr.getUIShape(i));
 			}
 		}
 	};
 
 	auto drawUiTextLayer = [&]() {
 		for (int i = ID_BEGIN_TEXT; i < ID_BEGIN_TEXT + MAX_UI_TEXT; ++i) {
-			if (objMgr.GetUIText(i).isVisible()) {
-				DrawTextObject(hDC, objMgr.GetUIText(i), objMgr);
+			if (objMgr.getUIText(i).isVisible()) {
+				DrawTextObject(hDC, objMgr.getUIText(i), objMgr);
 			}
 		}
 	};

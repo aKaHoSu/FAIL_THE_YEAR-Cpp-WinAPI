@@ -39,32 +39,32 @@ void GameInitializer::InitializeUiObjects(HINSTANCE hInst, HWND hWnd, ObjectMana
 	int j = 0;
 	for (int i = ID_BEGIN_IMAGE; i < ID_BEGIN_IMAGE + MAX_UI_IMAGE; i++) {
 		if (i == ID_BEGIN_IMAGE) { j = 0; }
-		objMgr.GetUIImage(i).setInitData(hInst, hWnd, ID_BEGIN_IMAGE + j);
+		objMgr.getUIImage(i).setInitData(hInst, hWnd, ID_BEGIN_IMAGE + j);
 		j++;
 	}
 
 	for (int i = ID_BEGIN_TEXT; i < ID_BEGIN_TEXT + MAX_UI_TEXT; i++) {
 		if (i == ID_BEGIN_TEXT) { j = 0; }
-		objMgr.GetUIText(i).setInitData(hInst, hWnd, ID_BEGIN_TEXT + j);
+		objMgr.getUIText(i).setInitData(hInst, hWnd, ID_BEGIN_TEXT + j);
 		j++;
 	}
 
 	for (int i = ID_BEGIN_SHAPE; i < ID_BEGIN_SHAPE + MAX_UI_SHAPE; i++) {
 		if (i == ID_BEGIN_SHAPE) { j = 0; }
-		objMgr.GetUIShape(i).setInitData(hInst, hWnd, ID_BEGIN_SHAPE + j);
+		objMgr.getUIShape(i).setInitData(hInst, hWnd, ID_BEGIN_SHAPE + j);
 		j++;
 	}
 }
 
 // プレイヤーオブジェクトの初期化
 void GameInitializer::InitializePlayerObject(HINSTANCE hInst, ObjectManager& objMgr) {
-	objMgr.GetPlayer().setInitData(hInst);
+	objMgr.getPlayer().setInitData(hInst);
 }
 
 // 留年オブジェクトの初期化
 void GameInitializer::InitializeRyunenObjects(HINSTANCE hInst, ObjectManager& objMgr) {
 	for (int i = 0; i < MAX_RYUNEN; ++i) {
-		objMgr.GetRyunen(i).setInitData(hInst, i);
+		objMgr.getRyunen(i).setInitData(hInst, i);
 	}
 }
 
@@ -81,20 +81,20 @@ void GameInitializer::ResetGameProgressState(GameState& gameState) {
 // UIオブジェクトを全て非表示にする
 void GameInitializer::HideUiObjects(ObjectManager& objMgr) {
 	for (int i = ID_BEGIN_IMAGE; i < ID_BEGIN_IMAGE + MAX_UI_IMAGE; i++) {
-		objMgr.GetUIImage(i).setVisible(false);
+		objMgr.getUIImage(i).setVisible(false);
 	}
 
 	for (int i = ID_BEGIN_TEXT; i < ID_BEGIN_TEXT + MAX_UI_TEXT; i++) {
-		objMgr.GetUIText(i).setVisible(false);
+		objMgr.getUIText(i).setVisible(false);
 	}
 
 	for (int i = ID_BEGIN_SHAPE; i < ID_BEGIN_SHAPE + MAX_UI_SHAPE; i++) {
-		objMgr.GetUIShape(i).setVisible(false);
+		objMgr.getUIShape(i).setVisible(false);
 	}
 }
 
 // 動的オブジェクトを全て非表示にする
 void GameInitializer::HideDynamicObjects(ObjectManager& objMgr) {
-	objMgr.GetPlayer().setVisible(false);
+	objMgr.getPlayer().setVisible(false);
 }
 

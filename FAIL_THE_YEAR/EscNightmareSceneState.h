@@ -19,22 +19,22 @@ public:
         if (manager.getOldSceneType() != SceneId::EscNightmare) {
             DEBUG_LOG("currentScene : EscNightmare\n");
             manager.setOldSceneType(SceneId::EscNightmare);
-            services.objMgr.GetUIText(ID_TEXT_ESC_NM).setActCnt(0);
+            services.objMgr.getUIText(ID_TEXT_ESC_NM).setActCnt(0);
             // Nightmare 脱出履歴を記録
             services.gameState.SetHasEverEscapedNightmare(true);
         }
 
         // 表示時間管理のためのカウンタを進める
-        services.objMgr.GetUIText(ID_TEXT_ESC_NM).setActCnt(
-            services.objMgr.GetUIText(ID_TEXT_ESC_NM).getActCnt() + 1);
+        services.objMgr.getUIText(ID_TEXT_ESC_NM).setActCnt(
+            services.objMgr.getUIText(ID_TEXT_ESC_NM).getActCnt() + 1);
 
         // 前半フレームのみテキストを表示
-        if (services.objMgr.GetUIText(ID_TEXT_ESC_NM).getActCnt() <= 50) {
+        if (services.objMgr.getUIText(ID_TEXT_ESC_NM).getActCnt() <= 50) {
          UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, { ID_TEXT_ESC_NM });
         }
 
         // 一定時間経過で Title へ自動遷移
-        if (services.objMgr.GetUIText(ID_TEXT_ESC_NM).getActCnt() >= 100) {
+        if (services.objMgr.getUIText(ID_TEXT_ESC_NM).getActCnt() >= 100) {
             manager.setCurrentSceneType(SceneId::Title);
         }
     }

@@ -95,8 +95,7 @@ BEGIN
     IDS_AFTER_RESULT_RETRY  "は じ め か ら"
     IDS_AFTER_RESULT_TITLE  "タイトルに戻る"
     IDS_BEST_EVADE_CNT      "ベスト回避記録：%d"
-    IDS_T_M_EXPL2           "Shiftキーを押している間は"
-    IDS_T_M_EXPL3           "低速で移動するよ"
+    IDS_LIFE                "残りSUN値：%d"
     IDS_ESC_NM              " "
 END
 
@@ -107,18 +106,20 @@ BEGIN
     IDS_T_CONSEPT2          "留年を回避して、棒人間くんを進級させよう!"
     IDS_T_MOVE              "移動方法"
     IDS_T_M_EXPL1           "十字キー / WASD で移動できるよ"
-    IDS_T_RYUNEN            "留年について"
+    IDS_T_M_EXPL2           "Shiftキーを押している間は"
 END
 
 STRINGTABLE
 BEGIN
+    IDS_T_M_EXPL3           "低速で移動するよ"
+    IDS_T_RYUNEN            "留年について"
     IDS_T_R_EXPL1           "これに当たってしまうと"
     IDS_T_R_EXPL2           "棒人間くんのSUN値が減ってしまいます"
     IDS_T_R_EXPL3           "灰色になった留年は当たっても大丈夫"
     IDS_T_LIFE              "SUN値について"
     IDS_T_L_EXPL1           "SUN値がゼロになると"
     IDS_T_L_EXPL2           "留年が確定してしまう"
-    IDS_T_L_EXPL3           "SUN値は表示されないので注意!"
+    IDS_T_L_EXPL3           "SUN値は一瞬しか表示されないので注意!"
     IDS_T_L_EXPL4           "SUN値が残り一つになると"
     IDS_T_L_EXPL5           "棒人間くんは震え上がるぞ!"
     IDS_T_BOMB              "ボムについて"
@@ -126,12 +127,12 @@ BEGIN
     IDS_T_B_EXPL2           "Z / Pキーでボムが発動できるぞ! "
     IDS_T_B_EXPL3           "ボム発動後はしばらく使えなくなるので注意"
     IDS_T_CLEAR             "クリア条件について"
-    IDS_T_C_EXPL1           "留年を一定数回避すると、"
-    IDS_T_C_EXPL2           "進級確定カットインが走るよ"
 END
 
 STRINGTABLE
 BEGIN
+    IDS_T_C_EXPL1           "留年を一定数回避すると、"
+    IDS_T_C_EXPL2           "進級確定カットインが走るよ"
     IDS_T_C_EXPL3           "カットインは見てからのお楽しみ..."
     IDS_T_C_EXPL4           "見せてくれよ、進級確定の景色...>"
     IDS_T_AFTER_CLEAR       "その後は、進級が降ってきます"

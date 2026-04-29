@@ -42,10 +42,10 @@ public:
 		// ステップが変化した直後の初期化処理
 		if (manager.getOldTutorialStepType() != manager.getCurrentTutorialStepType()) {
 			services.gameState.SetCanAdv(false);
-			services.objMgr.GetPlayer().setStatusType(PlayerStatus::Normal);
-			services.objMgr.GetPlayer().setLife(3);
+			services.objMgr.getPlayer().setStatusType(PlayerStatus::Normal);
+			services.objMgr.getPlayer().setLife(3);
 			for (int i = 0; i < MAX_RYUNEN; i++) {
-				services.objMgr.GetRyunen(i).setActCnt(0);
+				services.objMgr.getRyunen(i).setActCnt(0);
 			}
 		}
 
@@ -72,8 +72,8 @@ public:
 			if (manager.getOldTutorialStepType() != TutorialStepId::Consept) {
 				DEBUG_LOG("Current tutorial step : Consept\n");
 				manager.setOldTutorialStepType(TutorialStepId::Consept);
-				services.objMgr.GetPlayer().setPosition(900, 310);
-				services.objMgr.GetPlayer().setBomb(false);
+				services.objMgr.getPlayer().setPosition(900, 310);
+				services.objMgr.getPlayer().setBomb(false);
 			}
 			UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, {
 				ID_TEXT_T_TITLE,
@@ -81,14 +81,14 @@ public:
 				ID_TEXT_T_CONSEPT2 });
 			UiVisibilityBatchHelper::SetShapesVisible(services.objMgr, { ID_SHAPE_T_TITLE });
 			UiVisibilityBatchHelper::SetPlayerVisible(services.objMgr);
-			services.objMgr.GetPlayer().Action(key, manager, services.objMgr, services.gameState);
+			services.objMgr.getPlayer().Action(key, manager, services.objMgr, services.gameState);
 			break;
 
 		case TutorialStepId::Move:
 			if (manager.getOldTutorialStepType() != TutorialStepId::Move) {
 				DEBUG_LOG("Current tutorial step : Move\n");
 				manager.setOldTutorialStepType(TutorialStepId::Move);
-				services.objMgr.GetRyunen(0).setVisible(false);
+				services.objMgr.getRyunen(0).setVisible(false);
 			}
 			UiVisibilityBatchHelper::SetPlayerVisible(services.objMgr);
 			UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, {
@@ -97,14 +97,14 @@ public:
 				ID_TEXT_T_M_EXPL2,
 				ID_TEXT_T_M_EXPL3 });
 			UiVisibilityBatchHelper::SetShapesVisible(services.objMgr, { ID_SHAPE_T_MOVE });
-			services.objMgr.GetPlayer().Action(key, manager, services.objMgr, services.gameState);
+			services.objMgr.getPlayer().Action(key, manager, services.objMgr, services.gameState);
 			break;
 
 		case TutorialStepId::RyunenObject:
 			if (manager.getOldTutorialStepType() != TutorialStepId::RyunenObject) {
 				DEBUG_LOG("Current tutorial step : RyunenObject\n");
 				manager.setOldTutorialStepType(TutorialStepId::RyunenObject);
-				services.objMgr.GetPlayer().setPosition(900, 310);
+				services.objMgr.getPlayer().setPosition(900, 310);
 				m_oneHit = false;
 			}
 			UiVisibilityBatchHelper::SetPlayerVisible(services.objMgr);
@@ -115,27 +115,44 @@ public:
 				ID_TEXT_T_R_EXPL2,
 				ID_TEXT_T_R_EXPL3 });
 			UiVisibilityBatchHelper::SetShapesVisible(services.objMgr, { ID_SHAPE_T_RYUNEN_BOMB });
-			if (!services.objMgr.GetRyunen(0).getPositionFlg()) {
-				services.objMgr.GetRyunen(0).SpawnAt(952.0f);
+			if (!services.objMgr.getRyunen(0).getPositionFlg()) {
+				services.objMgr.getRyunen(0).SpawnAt(952.0f);
 			}
 			if (services.objMgr.checkHitBetweenPlayerAndRyunen(services.gameState)) m_oneHit = true;
-			if (m_oneHit) services.objMgr.GetPlayer().Action(key, manager, services.objMgr, services.gameState);
-			services.objMgr.GetRyunen(0).Action(manager, services.gameState);
+			if (m_oneHit) services.objMgr.getPlayer().Action(key, manager, services.objMgr, services.gameState);
+			services.objMgr.getRyunen(0).Action(manager, services.gameState);
 			break;
 
 		case TutorialStepId::Life:
 			if (manager.getOldTutorialStepType() != TutorialStepId::Life) {
 				DEBUG_LOG("Current tutorial step : Life\n");
 				manager.setOldTutorialStepType(TutorialStepId::Life);
-				services.objMgr.GetPlayer().setPosition(900, 310);
-				services.objMgr.GetRyunen(0).SpawnAt(952.0f);
+				services.objMgr.getPlayer().setPosition(900, 310);
+				services.objMgr.getRyunen(0).SpawnAt(952.0f);
 				m_oneHit = false;
-				for (int i = 1; i <= 6; i++) services.objMgr.GetRyunen(i).setVisible(false);
+				for (int i = 1; i <= 6; i++) services.objMgr.getRyunen(i).setVisible(false);
 			}
+
+			if (!services.objMgr.getRyunen(0).getPositionFlg()) {
+				services.objMgr.getRyunen(0).SpawnAt(952.0f);
+			}
+			if (services.objMgr.checkHitBetweenPlayerAndRyunen(services.gameState))
+				m_oneHit = true;
+
+			if (m_oneHit) {
+				services.objMgr.getPlayer().Action(key, manager, services.objMgr, services.gameState);
+
+				if (services.objMgr.getPlayer().getLife() > 1)
+					services.objMgr.getPlayer().setLife(1);
+			}
+
+			if (!m_oneHit ||
+				(m_oneHit && services.objMgr.getRyunen(0).getStatusType() != RyunenStatus::Offscreen))
+				services.objMgr.getRyunen(0).Action(manager, services.gameState);
 
 			UiVisibilityBatchHelper::SetPlayerVisible(services.objMgr);
 
-			if ((!m_oneHit) || (m_oneHit && services.objMgr.GetRyunen(0).getStatusType() != RyunenStatus::Offscreen))
+			if ((!m_oneHit) || (m_oneHit && services.objMgr.getRyunen(0).getStatusType() != RyunenStatus::Offscreen))
 				UiVisibilityBatchHelper::SetRyunenVisible(services.objMgr, 0);
 
 			UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, {
@@ -145,24 +162,13 @@ public:
 				   ID_TEXT_T_L_EXPL3,
 				   ID_TEXT_T_L_EXPL4,
 				   ID_TEXT_T_L_EXPL5 });
+
+			if (services.objMgr.getPlayer().getStatusType() == PlayerStatus::Damage) {
+				UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, { ID_TEXT_LIFE });
+			}
+
 			UiVisibilityBatchHelper::SetShapesVisible(services.objMgr, { ID_SHAPE_T_LIFE });
 
-			if (!services.objMgr.GetRyunen(0).getPositionFlg()) {
-				services.objMgr.GetRyunen(0).SpawnAt(952.0f);
-			}
-			if (services.objMgr.checkHitBetweenPlayerAndRyunen(services.gameState))
-				m_oneHit = true;
-
-			if (m_oneHit) {
-				services.objMgr.GetPlayer().Action(key, manager, services.objMgr, services.gameState);
-
-				if (services.objMgr.GetPlayer().getLife() > 1)
-					services.objMgr.GetPlayer().setLife(1);
-			}
-
-			if (!m_oneHit ||
-				(m_oneHit && services.objMgr.GetRyunen(0).getStatusType() != RyunenStatus::Offscreen))
-				services.objMgr.GetRyunen(0).Action(manager, services.gameState);
 
 			break;
 
@@ -170,10 +176,10 @@ public:
 			if (manager.getOldTutorialStepType() != TutorialStepId::Bomb) {
 				DEBUG_LOG("Current tutorial step : Bomb\n");
 				manager.setOldTutorialStepType(TutorialStepId::Bomb);
-				services.objMgr.GetPlayer().setLife(3);
-				services.objMgr.GetPlayer().setBomb(true);
-				services.objMgr.GetRyunen(0).setVisible(false);
-				for (int i = 1; i < 6; i++) services.objMgr.GetRyunen(i).setInitData(hInst, i);
+				services.objMgr.getPlayer().setLife(3);
+				services.objMgr.getPlayer().setBomb(true);
+				services.objMgr.getRyunen(0).setVisible(false);
+				for (int i = 1; i < 6; i++) services.objMgr.getRyunen(i).setInitData(hInst, i);
 			}
 
 			UiVisibilityBatchHelper::SetPlayerVisible(services.objMgr);
@@ -185,14 +191,14 @@ public:
 				ID_TEXT_T_B_EXPL2,
 				ID_TEXT_T_B_EXPL3 });
 			UiVisibilityBatchHelper::SetShapesVisible(services.objMgr, { ID_SHAPE_T_RYUNEN_BOMB });
-			services.objMgr.GetPlayer().Action(key, manager, services.objMgr, services.gameState);
+			services.objMgr.getPlayer().Action(key, manager, services.objMgr, services.gameState);
 
 			for (int i = 1; i < 6; i++) {
-				services.objMgr.GetRyunen(i).Action(manager, services.gameState);
+				services.objMgr.getRyunen(i).Action(manager, services.gameState);
 			}
 
 			if (key.IsTriggered(KeyManager::Z) || key.IsTriggered(KeyManager::P)) {
-				services.objMgr.GetPlayer().useBomb(services.objMgr); services.objMgr.GetPlayer().setBombCT(100);
+				services.objMgr.getPlayer().useBomb(services.objMgr); services.objMgr.getPlayer().setBombCT(100);
 			}
 
 			{
@@ -206,8 +212,8 @@ public:
 				};
 
 				for (int i = 1; i < 6; i++) {
-					if (!services.objMgr.GetRyunen(i).getPositionFlg()) {
-						services.objMgr.GetRyunen(i).SpawnAt(kBombSpawnX[i]);
+					if (!services.objMgr.getRyunen(i).getPositionFlg()) {
+						services.objMgr.getRyunen(i).SpawnAt(kBombSpawnX[i]);
 					}
 				}
 			}
@@ -219,8 +225,8 @@ public:
 			if (manager.getOldTutorialStepType() != TutorialStepId::ClearCondition) {
 				DEBUG_LOG("Current tutorial step : ClearCondition\n");
 				manager.setOldTutorialStepType(TutorialStepId::ClearCondition);
-				services.objMgr.GetPlayer().setPosition(790, 470);
-				for (int i = 1; i <= 6; i++) services.objMgr.GetRyunen(i).setVisible(false);
+				services.objMgr.getPlayer().setPosition(790, 470);
+				for (int i = 1; i <= 6; i++) services.objMgr.getRyunen(i).setVisible(false);
 			}
 
 			UiVisibilityBatchHelper::SetPlayerVisible(services.objMgr);
@@ -237,8 +243,8 @@ public:
 			if (manager.getOldTutorialStepType() != TutorialStepId::AfterCanAdv) {
 				DEBUG_LOG("Current tutorial step : AfterCanAdv\n");
 				manager.setOldTutorialStepType(TutorialStepId::AfterCanAdv);
-				services.objMgr.GetPlayer().setPosition(790, 470);
-				services.objMgr.GetRyunen(6).setPosition(1100, 0);
+				services.objMgr.getPlayer().setPosition(790, 470);
+				services.objMgr.getRyunen(6).setPosition(1100, 0);
 			}
 
 			UiVisibilityBatchHelper::SetRyunenVisible(services.objMgr, 6);
@@ -248,10 +254,10 @@ public:
 				  ID_TEXT_T_AC_EXPL1,
 				  ID_TEXT_T_AC_EXPL2,
 				  ID_TEXT_T_AC_EXPL3 });
-			services.objMgr.GetRyunen(6).Action(manager, services.gameState);
+			services.objMgr.getRyunen(6).Action(manager, services.gameState);
 
-			if (!services.objMgr.GetRyunen(6).getPositionFlg()) {
-				services.objMgr.GetRyunen(6).SpawnAt(1100.0f);
+			if (!services.objMgr.getRyunen(6).getPositionFlg()) {
+				services.objMgr.getRyunen(6).SpawnAt(1100.0f);
 			}
 			break;
 
@@ -259,8 +265,8 @@ public:
 			if (manager.getOldTutorialStepType() != TutorialStepId::EndTutorial) {
 				DEBUG_LOG("Current tutorial step : EndTutorial\n");
 				manager.setOldTutorialStepType(TutorialStepId::EndTutorial);
-				services.objMgr.GetPlayer().setPosition(740, 380);
-				services.objMgr.GetRyunen(6).setVisible(false);
+				services.objMgr.getPlayer().setPosition(740, 380);
+				services.objMgr.getRyunen(6).setVisible(false);
 			}
 
 			UiVisibilityBatchHelper::SetPlayerVisible(services.objMgr);

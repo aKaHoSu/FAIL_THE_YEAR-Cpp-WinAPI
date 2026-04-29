@@ -26,8 +26,8 @@ public:
 			services.gameState.SetGameCnt(0);
 
 			// 演出用カウンタをリセット
-			services.objMgr.GetUIImage(ID_IMAGE_CANADV).setActCnt(0);
-			services.objMgr.GetUIText(ID_TEXT_PAUSE).setActCnt(0);
+			services.objMgr.getUIImage(ID_IMAGE_CANADV).setActCnt(0);
+			services.objMgr.getUIText(ID_TEXT_PAUSE).setActCnt(0);
 			DEBUG_LOG("evadeCnt : %d\n", services.gameState.EvadeCnt());
 			DEBUG_LOG("evadeGoal : %d\n", services.gameState.EvadeGoal());
 		}
@@ -36,9 +36,9 @@ public:
 	// ポーズ中の表示状態を維持する（ロジック更新はしない）
 	static void SetupPausedView(SceneServices& services) {
 		// ポーズ演出で必要な表示要素のみを可視化
-		services.objMgr.GetPlayer().setVisible(true);
-		services.objMgr.GetUIShape(ID_SHAPE_VEIL).setVisible(true);
+		services.objMgr.getPlayer().setVisible(true);
+		services.objMgr.getUIShape(ID_SHAPE_VEIL).setVisible(true);
 		// PAUSE テキストの点滅を更新
-		UI_Text::UpdateBlink(services.objMgr.GetUIText(ID_TEXT_PAUSE));
+		UI_Text::UpdateBlink(services.objMgr.getUIText(ID_TEXT_PAUSE));
 	}
 };

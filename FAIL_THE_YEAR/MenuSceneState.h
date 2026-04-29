@@ -63,8 +63,9 @@ public:
 		UiVisibilityBatchHelper::SetTextsVisible(services.objMgr, {
 			  ID_TEXT_MENU_PLAY,
 			  ID_TEXT_MENU_TUTORIAL,
-			  ID_TEXT_MENU_BACK
+			  ID_TEXT_MENU_BACK,
 			});
+
 		UiVisibilityBatchHelper::SetShapesVisible(services.objMgr, {
 			ID_SHAPE_SELECTING_TRIANGLE,
 			ID_SHAPE_SELECTING_RECTANGLE

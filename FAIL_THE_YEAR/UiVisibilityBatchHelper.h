@@ -10,34 +10,34 @@
 class UiVisibilityBatchHelper {
 public:
     static void SetPlayerVisible(ObjectManager& objMgr, bool visible = true) {
-        objMgr.GetPlayer().setVisible(visible);
+        objMgr.getPlayer().setVisible(visible);
     }
 
     static void SetRyunenVisible(ObjectManager& objMgr, int index, bool visible = true) {
-        objMgr.GetRyunen(index).setVisible(visible);
+        objMgr.getRyunen(index).setVisible(visible);
     }
 
     static void SetRyunenRangeVisible(ObjectManager& objMgr, int begin, int endInclusive, bool visible) {
         for (int i = begin; i <= endInclusive; ++i) {
-            objMgr.GetRyunen(i).setVisible(visible);
+            objMgr.getRyunen(i).setVisible(visible);
         }
     }
 
     static void SetTextsVisible(ObjectManager& objMgr, std::initializer_list<int16_t> ids, bool visible = true) {
         for (const int16_t id : ids) {
-            objMgr.GetUIText(id).setVisible(visible);
+            objMgr.getUIText(id).setVisible(visible);
         }
     }
 
     static void SetShapesVisible(ObjectManager& objMgr, std::initializer_list<int16_t> ids, bool visible = true) {
         for (const int16_t id : ids) {
-            objMgr.GetUIShape(id).setVisible(visible);
+            objMgr.getUIShape(id).setVisible(visible);
         }
     }
 
     static void SetImagesVisible(ObjectManager& objMgr, std::initializer_list<int16_t> ids, bool visible = true) {
         for (const int16_t id : ids) {
-            objMgr.GetUIImage(id).setVisible(visible);
+            objMgr.getUIImage(id).setVisible(visible);
         }
     }
 };

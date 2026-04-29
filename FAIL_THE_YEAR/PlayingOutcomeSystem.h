@@ -12,7 +12,7 @@ class PlayingOutcomeSystem {
 public:
     // ライフが尽きたタイミングでリザルトを確定する
     static void EvaluateGameResult(SceneManager& manager, SceneServices& services) {
-        if (services.objMgr.GetPlayer().getLife() <= 0 &&
+        if (services.objMgr.getPlayer().getLife() <= 0 &&
             manager.getCurrentSceneType() == SceneId::Playing &&
             manager.getResultType() == GameResult::None) {
             if (services.gameState.CanAdv()) {
@@ -23,7 +23,7 @@ public:
                 // 進級未確定でライフ枯渇した場合は留年確定
                 manager.setResultType(GameResult::Fail);
               // 留年確定時は表示位置を調整（追い込み数テキスト非表示対応）
-                services.objMgr.GetUIText(ID_TEXT_RESULT_EVADE_RYUNEN).addPosition(0, 45);
+                services.objMgr.getUIText(ID_TEXT_RESULT_EVADE_RYUNEN).addPosition(0, 45);
             }
           // 勝敗確定後はスポーン停止し、経過カウンタをリセット
             services.gameState.SetCanSpawn(false);
@@ -38,14 +38,14 @@ public:
             manager.getCurrentSceneType() == SceneId::Playing) {
           // 画面上の留年を着地状態にし、進級確定演出へ移行
             for (int i = 0; i < MAX_RYUNEN; ++i) {
-                services.objMgr.GetRyunen(i).setStatusType(RyunenStatus::Landed);
+                services.objMgr.getRyunen(i).setStatusType(RyunenStatus::Landed);
             }
             services.gameState.SetCanSpawn(false);
             services.gameState.SetRyunenCount(5);
             services.gameState.SetGameCnt(0);
             services.gameState.SetCanAdv(true);
          // 進級確定後はライフを1に固定
-            services.objMgr.GetPlayer().setLife(1);
+            services.objMgr.getPlayer().setLife(1);
         }
     }
 
@@ -54,7 +54,7 @@ public:
         if (services.gameState.CanAdv() &&
             !services.gameState.CanSpawn() &&
             manager.getCurrentSceneType() == SceneId::Playing) {
-            auto& img = services.objMgr.GetUIImage(ID_IMAGE_CANADV);
+            auto& img = services.objMgr.getUIImage(ID_IMAGE_CANADV);
             img.setVisible(true);
             img.setActCnt(img.getActCnt() + 1);
             // フレーム帯ごとに速度を変えてカットインを制御
@@ -77,9 +77,9 @@ public:
     // 全留年が画面外かどうかを確認する
     static bool CheckAllOffScreen(SceneServices& services) {
         for (int i = 0; i < MAX_RYUNEN; ++i) {
-            if (services.objMgr.GetRyunen(i).isVisible()) {
+            if (services.objMgr.getRyunen(i).isVisible()) {
                 // 1体でも画面内扱いが残っていれば遷移不可
-                if (services.objMgr.GetRyunen(i).getStatusType() != RyunenStatus::Offscreen) {
+                if (services.objMgr.getRyunen(i).getStatusType() != RyunenStatus::Offscreen) {
                     return false;
                 }
             }
