@@ -6,7 +6,7 @@
 #include "WndProc.h"
 #include "Draw.h"
 #include "GameInitializer.h"
-#include "EngineContext.h"
+#include "GameContext.h"
 #include "UI_Text.h"
 #include "Ryunen.h"
 #include "DebugLog.h"
@@ -97,10 +97,9 @@ LRESULT CALLBACK WndProc(HWND hWnd,
 	WPARAM wParam,
 	LPARAM lParam)
 {
-	EngineContext& engine = g_engine;
-	GameState& gameState = g_gameState;
-	ObjectManager& objMgr = g_objMgr;
-	SceneServices services{ gameState, objMgr };
+	GameContext& context = g_gameContext;
+	EngineContext& engine = context.engine;
+	SceneServices services{ context.gameState, context.objMgr };
 
 	static RECT rc;
 	HBITMAP hBitmap;
@@ -124,7 +123,7 @@ LRESULT CALLBACK WndProc(HWND hWnd,
 		engine.hInst = (HINSTANCE)GetWindowLongPtr(hWnd, GWLP_HINSTANCE);
 		engine.hWnd = hWnd;
 
-		GameInitializer::InitAllGameObjects(engine.hInst, engine.hWnd, gameState, objMgr);
+		GameInitializer::InitAllGameObjects(engine.hInst, engine.hWnd, context.gameState, context.objMgr);
 
 		srand((unsigned)time(NULL));
 		SetTimer(hWnd, 1, kTimerIntervalMs, NULL);
@@ -221,7 +220,7 @@ LRESULT CALLBACK WndProc(HWND hWnd,
 		FillRect(engine.hDCBack, &rc, hBrush);
 
 		// すべてのゲームオブジェクトをバックバッファへ描画
-		Draw::DrawAll(engine.hDCBack, objMgr, gameState);
+		Draw::DrawAll(engine.hDCBack, context.objMgr, context.gameState);
 
 		// バックバッファを画面に転送
 		BitBlt(hDC, 0, 0, WINDOW_W, WINDOW_H, engine.hDCBack, 0, 0, SRCCOPY);

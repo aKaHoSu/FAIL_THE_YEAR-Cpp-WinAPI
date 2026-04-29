@@ -258,11 +258,13 @@ class KeyManager;
 class GameState;
 class ObjectManager;
 class EngineContext;
+struct GameContext;
 
 
 /* --- 外部変数の宣言(extern) --- */
-extern EngineContext g_engine;		 // エンジン関連(WinAPIハンドル, シーン管理, キー入力管理)
-extern GameState g_gameState;		 // ゲーム進行状態
-extern ObjectManager g_objMgr;		 // ゲームオブジェクト管理
+extern GameContext g_gameContext;	 // ゲーム全体の共有コンテキスト
+extern EngineContext& g_engine;		 // ゲーム全体コンテキスト内のエンジン関連
+extern GameState& g_gameState;		 // ゲーム全体コンテキスト内のゲーム進行状態
+extern ObjectManager& g_objMgr;		 // ゲーム全体コンテキスト内のゲームオブジェクト管理
 
 

@@ -1,16 +1,11 @@
-﻿/* =============================================================================
- * ファイル概要:
- * - 共有インスタンスの宣言。
+/* =============================================================================
+ * File overview:
+ * - Shared instance definitions.
  * ============================================================================= */
 #include "Common.h"
-#include "EngineContext.h"
-#include "GameState.h"
-#include "ObjectManager.h"
+#include "GameContext.h"
 
-EngineContext g_engine;  // エンジン関連
-						 // （WinAPIハンドル、シーン管理、キー入力管理）
-
-GameState g_gameState;   // ゲーム進行状態
-
-ObjectManager g_objMgr;  // ゲームオブジェクト管理
-
+GameContext g_gameContext;
+EngineContext& g_engine = g_gameContext.engine;
+GameState& g_gameState = g_gameContext.gameState;
+ObjectManager& g_objMgr = g_gameContext.objMgr;
